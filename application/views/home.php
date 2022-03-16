@@ -558,42 +558,18 @@
       <h3 class="vir-header">360 Degrees Google Virtual Tour</h3>
       <p class="vir-p">Get a better perspective of the properties with our 360 degree views</p>
       <div class="row">
+        <?php foreach($virtual_tour as $vt){?>
         <div class="col-md-3 vitual-main-div">
           <div class="upper-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-img/high-gardens-thumb.jpg"></a>
+            <a href="emaar-aseel-villas.php"><img src="<?=image_url().$vt->vt_img?>" alt="<?=$vt->vt_img_alt?>"></a>
           </div>
           <div class="lower-image-div">
             <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-w.png" class="vir-t"></a>
           </div>
-          <a href="emaar-aseel-villas.php"><h5 class="vtp-name">High Gardens</h5></a>
+          <a href="<?=$vt->vt_url?>"><h5 class="vtp-name"><?=$vt->vt_heading?></h5></a>
         </div>
-        <div class="col-md-3 vitual-main-div">
-          <div class="upper-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-img/bellavista-thumb.jpg"></a>
-          </div>
-          <div class="lower-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-w.png" class="vir-t"></a>
-          </div>
-          <a href="emaar-aseel-villas.php"><h5 class="vtp-name">High Gardens</h5></a>
-        </div>
-        <div class="col-md-3 vitual-main-div">
-          <div class="upper-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-img/loreto-thumb.jpg"></a>
-          </div>
-          <div class="lower-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-w.png" class="vir-t"></a>
-          </div>
-           <a href="emaar-aseel-villas.php"><h5 class="vtp-name">High Gardens</h5></a>
-        </div>
-        <div class="col-md-3 vitual-main-div">
-          <div class="upper-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-img/radisson-thumb.jpg"></a>
-          </div>
-          <div class="lower-image-div">
-            <a href="emaar-aseel-villas.php"><img src="<?=base_url('assets/images')?>/virtual-tour-w.png" class="vir-t"></a>
-          </div>
-           <a href="emaar-aseel-villas.php"><h5 class="vtp-name">High Gardens</h5></a>
-        </div>
+      <?php }?>
+        
       </div>
     <div class="item-grid--centered">
       <a href="virtual-tour.php" class="item-grid__load-more">Load More Tour</a>
