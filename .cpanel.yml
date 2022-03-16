@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/gulfrealtor/public_html/ci/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp * $DEPLOYPATH
