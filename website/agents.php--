@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<!-- Basic need -->
+	<title>ReaLand</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="ReaLand - Real Estate HTML Template">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<?php include 'common/header_link_index.php';?>
+</head>
+
+<body>
+<?php include 'common/header.php';?>
+<section class="agents-with-info">
+  <div class="container">
+    <ul class="ht-breadcrumbs ht-breadcrumbs--y-padding ht-breadcrumbs--b-border ht-breadcrumbs--b-margin">
+      <li class="ht-breadcrumbs__item"><a href="index-2.html" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Home</span></a></li>
+      <li class="ht-breadcrumbs__item"><a href="agents.html" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Agent</span></a></li>
+      <li class="ht-breadcrumbs__item"><span class="ht-breadcrumbs__page">Agent List Style</span></li>
+    </ul><!-- ht-breadcrumb -->
+
+    <h2 class="section__title">Agents with Info</h2>
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-6">
+        <div class="famous-agents__single">
+          <div class="famous-agents__header">
+            <img src="images/agents/Zoya-1.jpg" class="agents-img-cong" alt="zoya drehomes Senior Client Manager">
+            <ul class="famous-agents__social">
+              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a></li>
+            </ul><!-- .famous_agents__social -->
+          </div><!-- .famous-agents__header -->
+          <div class="famous-agents__content">
+            <h4 class="famous-agents__name"><a href="agents_single.html">ZOYA ARSHAD</a></h4>
+            <span class="famous-agents__position">Senior Client Manager</span>
+            <ul class="famous-agents__contact">
+              <li class="famous-agents__phone"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><a href="tel:+97144511638">Office: +971 44 511 638</a></li>
+              <li class="famous-agents__phone"><i class="fa fa-mobile fa-fw" aria-hidden="true"></i><a href="tel:+971527586099">Mobile: +971 52 758 6099</a></li>
+              <!--<li class="famous-agents__email"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i><a href="mailto:michael-druc@domain.com">Michael-druc@domain.com</a></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+        <div class="famous-agents__single">
+          <div class="famous-agents__header">
+            <img src="images/agents/demitri-2.jpg" class="agents-img-cong" alt="DMITRIY TEN">
+            <ul class="famous-agents__social">
+              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a></li>
+            </ul>
+          </div>
+          <div class="famous-agents__content">
+            <h4 class="famous-agents__name"><a href="agents_single.html">DMITRIY TEN</a></h4>
+            <span class="famous-agents__position">Client Manager</span>
+            <ul class="famous-agents__contact">
+              <li class="famous-agents__phone"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><a href="tel:+97144511638">Office: +971 44 511 638</a></li>
+              <li class="famous-agents__phone"><i class="fa fa-mobile fa-fw" aria-hidden="true"></i><a href="tel:971509472924">Mobile: 971 50 947 2924</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+        <div class="famous-agents__single">
+          <div class="famous-agents__header">
+            <img src="images/agents/Faizan-1.jpg" class="agents-img-cong" alt="Faizan Amin">
+            <ul class="famous-agents__social">
+              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a></li>
+            </ul>
+          </div>
+          <div class="famous-agents__content">
+            <h4 class="famous-agents__name"><a href="agents_single.html">FAIZAN AMIN</a></h4>
+            <span class="famous-agents__position">Senior Client Manager</span>
+            <ul class="famous-agents__contact">
+              <li class="famous-agents__phone"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><a href="tel:+97144511638">Office: +971 44 511 638</a></li>
+              <li class="famous-agents__phone"><i class="fa fa-mobile fa-fw" aria-hidden="true"></i><a href="tel:+971557154371">Mobile: +971 55 715 4371</a></li>
+            <!--<li class="famous-agents__email"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i><a href="mailto:michael-druc@domain.com">Michael-druc@domain.com</a></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+        <div class="famous-agents__single">
+          <div class="famous-agents__header">
+            <img src="images/agents/Akash-D-1.jpg" class="agents-img-cong" alt="Akash">
+            <ul class="famous-agents__social">
+              <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a></li>
+              <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a></li>
+            </ul>
+          </div>
+          <div class="famous-agents__content">
+            <h4 class="famous-agents__name"><a href="agents_single.html">AKASH DEVNANI</a></h4>
+            <span class="famous-agents__position">Client Manager</span>
+            <ul class="famous-agents__contact">
+              <li class="famous-agents__phone"><i class="fa fa-phone fa-fw" aria-hidden="true"></i><a href="tel:+97144511638">Office: +971 44 511 638</a></li>
+              <li class="famous-agents__phone"><i class="fa fa-mobile fa-fw" aria-hidden="true"></i><a href="tel:+971582177127">Mobile: +971 58 217 7127</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!---<section class="agent-with-button">
+  <div class="container">
+    <h2 class="section__title">Agent with Button</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="agent-with-button__single">
+          <div class="agent-with-button__wrapper">
+            <img src="images/uploads/michael-drucker.jpg" alt="Michael Drucker">
+            <div class="agent-with-button__agent">
+              <h4 class="agent-with-button__agent-name">Michael Drucker</h4>
+              <span class="agent-with-button__agent-position">Zephyr Real Estate</span>
+              <img src="images/rating.png" alt="Five Stars Rating">
+            </div>
+          </div>
+          <a href="#" class="agent-with-button__cta">Contact Michael</a>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="agent-with-button__single">
+          <div class="agent-with-button__wrapper">
+            <img src="images/uploads/tristina_avelon.png" alt="Tristina Avelon">
+            <div class="agent-with-button__agent">
+              <h4 class="agent-with-button__agent-name">Tristina Avelon</h4>
+              <span class="agent-with-button__agent-position">Zephyr Real Estate</span>
+              <img src="images/rating.png" alt="Five Stars Rating">
+            </div>
+          </div>
+          <a href="#" class="agent-with-button__cta">Contact Tristina</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="agent-with-button__single">
+          <div class="agent-with-button__wrapper">
+            <img src="images/uploads/donal_lucian.jpg" alt="Donal Lucian">
+            <div class="agent-with-button__agent">
+              <h4 class="agent-with-button__agent-name">Donal Lucian</h4>
+              <span class="agent-with-button__agent-position">Zephyr Real Estate</span>
+              <img src="images/rating.png" alt="Five Stars Rating">
+            </div>
+          </div>
+          <a href="#" class="agent-with-button__cta">Contact Donal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="newsletter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 newsletter__content">
+        <img src="images/icon_mail.png" alt="Newsletter" class="newsletter__icon">
+        <div class="newsletter__text-content">
+          <h2 class="newsletter__title">Newsletter</h2>
+          <p class="newsletter__desc">Sign up for our newsletter to get up-to-date from us</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <form action="http://boostifythemes.com/demo/html/realand/index.html" class="newsletter__form">
+          <input type="email" class="newsletter__field" placeholder="Enter Your E-mail">
+          <button type="submit" class="newsletter__submit">Subscribe</button>
+        </form>
+      </div>  
+    </div>
+  </div>
+</section>--->
+<?php include 'common/footer.php';?>
+<a href="#" class="back-to-top"><span class="ion-ios-arrow-up"></span></a>
+
+<!-- JS Files -->
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDyCxHyc8z9gMA5IlipXpt0c33Ajzqix4"></script>
+<script src="js/infobox.js"></script>
+<script src="js/custom.js"></script>
+</body>
+
+</html>
