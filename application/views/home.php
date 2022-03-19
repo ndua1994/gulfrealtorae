@@ -1,4 +1,4 @@
-  <section>
+<!--   <section>
           <div class="pxp-hero vh-100">
                 <div class="pxp-hero-bg pxp-cover pxp-cover-bottom" style="background-image: url(<?=base_url('assets/images')?>/hero-img-1.jpg);"></div>
                 <div class="pxp-hero-opacity"></div>
@@ -23,9 +23,9 @@
                 </div>
             </div>
 
-</section>
+</section> -->
   
-<section class="featured-listing featured-listing--white">
+<!-- <section class="featured-listing featured-listing--white">
   <div class="container">
     <h2 class="section__title">Featured Listing</h2>
     <div class="featured-listing__slider">
@@ -156,7 +156,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <section class="main-search main-search--static">
 <div class="container">
   <div class="main-search__container">
