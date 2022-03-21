@@ -1955,6 +1955,107 @@ submitHandler:function(form)
 
 
 
+/*Virtual Tour form validation starts*/
+
+
+$('#virtual-tour-frm').validate({
+
+
+rules:
+{
+   name:
+   {
+    required:true
+   },
+   email:
+   {
+    required:true,
+    email:true
+   },
+   mobile:
+   {
+    required:true,
+    number:true
+   },
+   comment:
+   {
+    required:true
+   }
+},
+messages:
+{
+  name:
+  {
+    required:'Name is required'
+  },
+  email:
+  {
+    required:'Email ID is required',
+    email:'Enter a valid Email ID'
+  },
+  mobile:
+  {
+    required:'Mobil Number is required',
+    number:'Mobile Number must be a numeric value'
+  },
+  comment:
+  {
+    required:'Comment is required'
+  }
+},
+submitHandler:function()
+{
+  var virtual_tour_hidden=$('#virtual-tour-frm .iti__selected-dial-code').text();
+  $('input[name="virtual_tour_hidden"]').val(virtual_tour_hidden);
+  
+
+  $.ajax({
+
+    url:base_url+'virtual-tour/contact_form',
+    data:$('#virtual-tour-frm').serializeArray(),
+    type:'POST',
+    dataType:'json',
+    beforeSend:function()
+    {
+      $('input[name="vt_submit"]').val('Wait...');
+      $('input[name="vt_submit"]').prop('disabled',true);
+    },
+    success:function(r)
+    {
+      if(r.status=='success')
+      {
+        $('.vt_msg').text(r.msg);
+        $('input[name="vt_submit"]').val('Send Message');
+        $('input[name="vt_submit"]').prop('disabled',false); 
+         $("#virtual-tour-frm")[0].reset()
+         $('#virtual-tour-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
+      }
+      else
+      {
+        $('.vt_msg').text(r.msg);
+        $('input[name="vt_submit"]').val('Send Message');
+        $('input[name="vt_submit"]').prop('disabled',false);
+         $('#virtual-tour-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
+          $("#virtual-tour-frm")[0].reset()
+
+      }
+
+    }
+  });
+}
+
+
+
+});
+
+
+/*Virtual Tour form validation ends*/
+
+
+
+
+
+
 /*Community form validation starts*/
 
 

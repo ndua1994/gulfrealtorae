@@ -572,7 +572,7 @@
         
       </div>
     <div class="item-grid--centered">
-      <a href="virtual-tour.php" class="item-grid__load-more">Load More Tour</a>
+      <a href="<?=base_url('virtual-tour')?>" class="item-grid__load-more">Load More Tour</a>
     </div>
 
       </div>

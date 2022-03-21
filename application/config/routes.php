@@ -60,4 +60,5 @@ $route['community/(:any)']='community/community_detail/$1';
 $route['agent/contact_form']='agent/contact_form/';
 $route['agent/(:any)']='agent/agent_detail/$1';
 $route['special-offer/(:num)']='special_offer';
+$route['virtual-tour/(:num)']='Virtual_tour';
 

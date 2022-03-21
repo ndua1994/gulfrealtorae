@@ -4665,6 +4665,7 @@ height: 41px;
 .listing-sort--main-listing {
   margin-bottom: 20px;
   padding: 15px;
+  /* visibility: hidden; */
 }
 .listing-sort--main-listing:after {
   display: none;
@@ -4677,6 +4678,7 @@ height: 41px;
 }
 .listing-sort__list {
   margin-bottom: 5px;
+  visibility: hidden;
 }
 @media only screen and (min-width: 768px) {
   .listing-sort__list {

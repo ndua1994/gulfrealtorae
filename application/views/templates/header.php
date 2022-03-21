@@ -46,7 +46,7 @@
           <li class="header__nav-item">
             <a href="<?=base_url('property')?>" class="header__nav-link">Property</a>
             <ul>
-                <li><a href="sale-properties.php">Sale Property</a></li>
+                <li><a href="<?=base_url('property/sale')?>">Sale Property</a></li>
                 <li><a href="rent-properties.php">Rent Property</a></li>
                  <li><a href="off-plan-properties.php">Off-Plan Property</a></li>
               </ul>
@@ -63,6 +63,7 @@
           </li>
            <li class="header__nav-item"><a href="<?=base_url('agent')?>" class="header__nav-link">Agent</a></li>
             <li class="header__nav-item"><a href="<?=base_url('special-offer')?>" class="header__nav-link">Special Offer</a></li>
+             <li class="header__nav-item"><a href="<?=base_url('virtual-tour')?>" class="header__nav-link">Virtual Tour</a></li>
             <li class="header__nav-item"><a href="<?=base_url('blog')?>" class="header__nav-link">Blog</a></li>
         </ul>
       </div>
