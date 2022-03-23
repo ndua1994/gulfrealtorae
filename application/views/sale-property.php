@@ -40,37 +40,39 @@
    <section class="item-grid">
   <div class="container">
     <div class="row">
+
+      <?php foreach($sale_property as $prop):?>
       <div class="col-md-4 item-grid__container">
+
         <div class="listing">
           <div class="item-grid__image-container">
-            <a href="single_property_1.html">
+            <a href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>">
               <div class="item-grid__image-overlay"></div>
-              <img src="images/featured-img/aseel-villas.jpg" href="emaar-aseel-villas.php" alt="Aseel Villas at Arabian Ranches" class="listing__img">
-              <span class="listing__favorite"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+              <img src="<?=image_url().$prop->prop_img?>" href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>" alt="<?=$prop->prop_img_alt?>" class="listing__img">
             </a>
           </div>
           <div class="item-grid__content-container">
             <div class="listing__content">
               <div class="row"> 
                 <div class="col-md-7 col-xs-6">
-              <h3 class="listing__title"><a href="emaar-aseel-villas.php">Aseel Villa</a></h3>
-              <p class="listing__location"><span class="ion-ios-location-outline listing__location-icon"></span> Arabian Ranches</p>
-              <p class="listing__price">AED 6,336,888</p>
+              <h3 class="listing__title"><a href="emaar-aseel-villas.php"><?=$prop->prop_name?></a></h3>
+              <p class="listing__location"><span class="ion-ios-location-outline listing__location-icon"></span> <?=$prop->prop_addr?></p>
+              <p class="listing__price"><?=$prop->prop_price?></p>
               </div>
               <div class="col-md-5 col-xs-6">
-              <img src="images/emaar.png" class="proj-dev-logo-h">
+              <img src="<?=image_url().$prop->prop_dev_img?>" alt="<?=image_url().$prop->prop_dev_img_alt?>" class="proj-dev-logo-h">
               </div>
               </div>
               <div class="listing__details">
                 <div class="row">
                 <div class="col-xs-6 col-md-6">
                 <ul class="listing__stats">
-                  <li><span class="listing__figure">4, 5, 6<sup>&plus;</sup></span> Beds</li>
-                  <li><span class="listing__figure">4,622</span> Sq.ft</li>
+                  <li><span class="listing__figure"><?=$prop->prop_beds?><sup>&plus;</sup></span> Beds</li>
+                  <li><span class="listing__figure"><?=$prop->prop_sqfeet?></span> Sq.ft</li>
                 </ul>
               </div>
                <div class="col-xs-6 col-md-6">
-                <a href="emaar-aseel-villas.php" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                <a href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
               </div>
               </div>
               </div>
@@ -78,88 +80,15 @@
           </div>
         </div>
       </div>
-  
-      <div class="col-md-4 item-grid__container">
-        <div class="listing">
-          <div class="item-grid__image-container">
-            <a href="single_property_1.html">
-              <div class="item-grid__image-overlay"></div>
-              <img src="images/featured-img/urbana.jpg" href="emaar-urbana-III.php" alt="Urbana III Townhouses" class="listing__img">
-              <span class="listing__favorite"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-            </a>
-          </div>
+    <?php endforeach;?>
 
-          <div class="item-grid__content-container">
-            <div class="listing__content">
-              <div class="row"> 
-                <div class="col-md-7 col-xs-6">
-              <h3 class="listing__title"><a href="emaar-urbana-III.php">Urbana III Townhouses</a></h3>
-              <p class="listing__location"><span class="ion-ios-location-outline listing__location-icon"></span> Emaar South</p>
-              <p class="listing__price">AED 1,015,888<span class="listing__price--small"></span></p>
-            </div>
-               <div class="col-md-5 col-xs-6">
-                  <img src="images/emaar.png" class="proj-dev-logo-h">
-               </div>
-              </div>
-              <div class="listing__details">
-                <div class="row">
-                  <div class="col-md-6 col-xs-6">
-                <ul class="listing__stats">
-                  <li><span class="listing__figure">2, 3</span> Beds</li>
-                  <li><span class="listing__figure">1,159</span> Sq.ft</li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-xs-6">
-                <a href="emaar-urbana-III.php" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-              </div>
-            </div>
-          </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-4 item-grid__container">
-        <div class="listing">
-          <div class="item-grid__image-container">
-            <a href="single_property_1.html">
-              <div class="item-grid__image-overlay"></div>
-              <img src="images/featured-img/zada.jpg" alt="Zada Apartments" class="listing__img">
-              <span class="listing__favorite"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-            </a>
-          </div>
 
-          <div class="item-grid__content-container">
-            <div class="listing__content">
-              <div class="row"> 
-                <div class="col-md-7 col-xs-6">
-              <h3 class="listing__title"><a href="single_property_1.html">Zada Residences</a></h3>
-              <p class="listing__location"><span class="ion-ios-location-outline listing__location-icon"></span> Business Bay, Dubai</p>
-              <p class="listing__price"><a href="#">AED 699,999</a></p>
-            </div>
-               <div class="col-md-5 col-xs-6">
-                  <img src="images/emaar.png" class="proj-dev-logo-h">
-               </div>
-            </div>
-              <div class="listing__details">
-                <div class="row">
-                  <div class="col-md-6 col-xs-6">
-                <ul class="listing__stats">
-                  <li><span class="listing__figure">1</span> Beds</li>
-                  <li><span class="listing__figure">529</span> Sq.ft</li>
-                </ul>
-              </div>
-              <div class="col-md-6 col-xs-6">
-                <a href="single_property_1.html" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-              </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+  
+  
       
     </div>
+       <div class="pagination"><?=$links?></div>
   </div>
 </section>
 </div>

@@ -65,12 +65,20 @@ class Property extends MY_Controller
 			$prop_dev_img_path=$prop_dev_img['raw_name'].$prop_dev_img['file_ext'];
 			$post['prop_dev_img']=$prop_dev_img_path;
 			}
+			else
+			{
+				$post['prop_dev_img']='';
+			}
 
 			if($this->upload->do_upload('prop_brochure'))
 			{
 			$prop_brochure=$this->upload->data();
 			$prop_brochure_path=$prop_brochure['raw_name'].$prop_brochure['file_ext'];
 			$post['prop_brochure']=$prop_brochure_path;
+			}
+			else
+			{
+				$post['prop_brochure']='';
 			}
 
 

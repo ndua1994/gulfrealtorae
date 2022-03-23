@@ -14,7 +14,7 @@ class Blog extends MY_Controller
 		'first_url'=>base_url('blog'),
 		'base_url'=>base_url('blog'),
 		'total_rows'=>$this->blog_m->num_rows(),
-		'per_page'=>4
+		'per_page'=>1
 		];
 	$this->pagination->initialize($config);
 	$data['links']=$this->pagination->create_links();
