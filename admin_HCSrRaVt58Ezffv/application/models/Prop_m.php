@@ -186,6 +186,8 @@ class Prop_m extends CI_Model
        
 		$query=$this->db->where('prop_id',$id)
 		                ->update('tbl_property',$prop_rec);
+
+		
 		                
 		               
 

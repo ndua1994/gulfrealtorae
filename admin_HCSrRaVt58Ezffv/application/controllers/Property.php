@@ -292,7 +292,7 @@ class Property extends MY_Controller
 			$prop_dev_img=$this->upload->data();
 			$prop_dev_img_path=$prop_dev_img['raw_name'].$prop_dev_img['file_ext'];
 			unlink('./uploads/'.$post['prop_dev_img_hidden'].'');
-			$post['prop_dev_img']=$prop_dev_img;
+		    $post['prop_dev_img']=$prop_dev_img_path;
 			$upload_status=1;
 			}
 			else
@@ -319,7 +319,7 @@ class Property extends MY_Controller
 			$prop_brochure=$this->upload->data();
 			$prop_brochure_path=$prop_brochure['raw_name'].$prop_brochure['file_ext'];
 			unlink('./uploads/'.$post['prop_brochure_hidden'].'');
-			$post['prop_brochure']=$prop_brochure;
+			$post['prop_brochure']=$prop_brochure_path;
 			$upload_status=1;
 			}
 			else

@@ -79,7 +79,7 @@ success:function(r)
           $('#message').text(r.msg);
           $('input[name="popup_submit"]').val('Send Message');
           $('input[name="popup_submit"]').prop('disabled',false); 
-          $("#login")[0].reset()
+          $("#login")[0].reset();
           $('#login input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
@@ -88,8 +88,7 @@ success:function(r)
           $('input[name="popup_submit"]').val('Send Message');
           $('input[name="popup_submit"]').prop('disabled',false);
           $('#login input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#login")[0].reset()
-
+          $("#login")[0].reset();
       }
 }
 
@@ -1825,7 +1824,7 @@ submitHandler:function(form)
           $('.contact_msg').text(r.msg);
           $('input[name="contact_submit"]').val('Send Message');
           $('input[name="contact_submit"]').prop('disabled',false); 
-          $("#contact-frm")[0].reset()
+          $("#contact-frm")[0].reset();
           $('#contact-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
@@ -1834,7 +1833,7 @@ submitHandler:function(form)
           $('input[name="contact_submit"]').val('Send Message');
           $('input[name="contact_submit"]').prop('disabled',false);
           $('#contact-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#contact-frm")[0].reset()
+          $("#contact-frm")[0].reset();
 
       }
 
@@ -1926,7 +1925,7 @@ submitHandler:function(form)
         $('.success_msg').text(r.msg);
         $('input[name="about_submit"]').val('Send Message');
         $('input[name="about_submit"]').prop('disabled',false); 
-         $("#about-frm")[0].reset()
+         $("#about-frm")[0].reset();
          $('#about-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
@@ -1935,7 +1934,7 @@ submitHandler:function(form)
         $('input[name="about_submit"]').val('Send Message');
         $('input[name="about_submit"]').prop('disabled',false);
          $('#about-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#about-frm")[0].reset()
+          $("#about-frm")[0].reset();
 
       }
 
@@ -2027,7 +2026,7 @@ submitHandler:function()
         $('.vt_msg').text(r.msg);
         $('input[name="vt_submit"]').val('Send Message');
         $('input[name="vt_submit"]').prop('disabled',false); 
-         $("#virtual-tour-frm")[0].reset()
+         $("#virtual-tour-frm")[0].reset();
          $('#virtual-tour-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
@@ -2036,7 +2035,7 @@ submitHandler:function()
         $('input[name="vt_submit"]').val('Send Message');
         $('input[name="vt_submit"]').prop('disabled',false);
          $('#virtual-tour-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#virtual-tour-frm")[0].reset()
+          $("#virtual-tour-frm")[0].reset();
 
       }
 
@@ -2128,7 +2127,7 @@ submitHandler:function()
         $('.comm_msg').text(r.msg);
         $('input[name="comm_submit"]').val('Send Message');
         $('input[name="comm_submit"]').prop('disabled',false); 
-         $("#community-frm")[0].reset()
+         $("#community-frm")[0].reset();
          $('#community-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
@@ -2137,7 +2136,7 @@ submitHandler:function()
         $('input[name="comm_submit"]').val('Send Message');
         $('input[name="comm_submit"]').prop('disabled',false);
          $('#community-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#community-frm")[0].reset()
+          $("#community-frm")[0].reset();
 
       }
 
@@ -2266,16 +2265,16 @@ submitHandler:function(form)
         $('.agent_msg').text(r.msg);
         $('input[name="agent_submit"]').val('Send Message');
         $('input[name="agent_submit"]').prop('disabled',false); 
-         $("#agent-frm")[0].reset()
-         $('#agent-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
+        $("#agent-frm")[0].reset();
+        $('#agent-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
       }
       else
       {
         $('.agent_msg').text(r.msg);
         $('input[name="agent_submit"]').val('Send Message');
         $('input[name="agent_submit"]').prop('disabled',false);
-         $('#agent-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
-          $("#agent-frm")[0].reset()
+        $('#agent-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
+        $("#agent-frm")[0].reset();
 
       }
 
@@ -2285,8 +2284,45 @@ submitHandler:function(form)
 }
 
 
-
 });
 
 /*Agent form validation ends*/
+
+
+/*sale property sort starts*/
+
+
+
+$(document).on('change','select[name="sale_prop_sort"]',function(e){
+
+  e.preventDefault();
+
+  var $t=$(this);
+  var sort=$t.val();
+
+  
+
+  $.ajax({
+   
+   url:base_url+'property/sale_filter',
+   data:{sort:sort},
+   type:'POST',
+   dataType:'json',
+   beforeSend:function()
+   {
+       $('.item-grid').html('');
+   },
+   success:function(r)
+   {
+     $('.item-grid').hide().html(r.msg).fadeIn('slow');
+
+   }
+
+
+  });
+
+
+});
+
+/*sale property sort ends*/
 

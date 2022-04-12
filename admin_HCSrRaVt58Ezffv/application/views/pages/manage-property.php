@@ -901,7 +901,7 @@
 		<td><?=$prop->comm_name?></td>
 		<td><?=$prop->prop_type_name?></td>
 		<td><?=$prop->prop_name?></td>
-		<td><?=$prop->prop_price?></td>
+		<td><?='AED '.number_format($prop->prop_price)?></td>
 		<td><?=$prop->first_name.' '.$prop->last_name?></td>
 		<td><?=$prop->updated_at?></td>
 		<td><span class="label label-lg font-weight-bold 

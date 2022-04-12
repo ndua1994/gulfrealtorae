@@ -21,15 +21,15 @@
                 <li class="listing-sort__item"><a href="#" class="listing-sort__link listing-sort__link--active"><i class="fa fa-th-large" aria-hidden="true" class="listing-sort__icon"></i></a></li>
               </ul>
         
-              <span class="listing-sort__result">1-10 of 25 results</span>
+              <!--<span class="listing-sort__result">1-10 of 25 results </span>-->
         
               <p class="listing-sort__sort">
                 <label for="sort-type" class="listing-sort__label"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Sort by </label>
-                <select name="sort-type" id="sort-type" class="ht-field listing-sort__field">
-                  <option value="default">Default</option>
-                  <option value="low-price">Price (Low to High)</option>
-                  <option value="high-price">Price (High to Low)</option>
-                  <option value="featured">Featured</option>
+                <select name="sale_prop_sort"  class="ht-field listing-sort__field">
+                  <option value="">Default</option>
+                  <option value="asc" <?=($this->session->userdata('sort_rec')=='asc' ? 'selected' : '')?>>Price (Low to High)</option>
+                  <option value="desc" <?=($this->session->userdata('sort_rec')=='desc' ? 'selected' : '')?>>Price (High to Low)</option>
+                  <option value="is_featured" <?=($this->session->userdata('sort_rec')=='is_featured' ? 'selected' : '')?>>Featured</option>
                 </select>
               </p>
             </div>
@@ -46,7 +46,7 @@
 
         <div class="listing">
           <div class="item-grid__image-container">
-            <a href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>">
+            <a href="<?=base_url('property-detail/'.$prop->prop_slug.'')?>">
               <div class="item-grid__image-overlay"></div>
               <img src="<?=image_url().$prop->prop_img?>" href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>" alt="<?=$prop->prop_img_alt?>" class="listing__img">
             </a>
@@ -55,7 +55,7 @@
             <div class="listing__content">
               <div class="row"> 
                 <div class="col-md-7 col-xs-6">
-              <h3 class="listing__title"><a href="emaar-aseel-villas.php"><?=$prop->prop_name?></a></h3>
+              <h3 class="listing__title"><a href="<?=base_url('property-detail/'.$prop->prop_slug.'')?>"><?=$prop->prop_name?></a></h3>
               <p class="listing__location"><span class="ion-ios-location-outline listing__location-icon"></span> <?=$prop->prop_addr?></p>
               <p class="listing__price"><?=$prop->prop_price?></p>
               </div>
@@ -72,7 +72,7 @@
                 </ul>
               </div>
                <div class="col-xs-6 col-md-6">
-                <a href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                <a href="<?=base_url('property-detail/'.$prop->prop_slug.'')?>" class="listing__btn">Details <span class="listing__btn-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
               </div>
               </div>
               </div>
