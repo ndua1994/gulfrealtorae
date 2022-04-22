@@ -68,7 +68,10 @@
                   <li class="property__feature-time-item"><?=$property_detail->prop_addr?></li>
                 </ul>
                 <?php if(!empty($property_detail->prop_brochure)):?>
-                <a href="#" class="property__feature-cta">Download Brochure</a>
+                <div class="download_bro">
+              <a id="link" href=".pdf" class="" download="" hidden=""></a>
+              <button type="button" data-bname=".pdf" onclick="document.getElementById('link').href=this.getAttribute('data-bname');  Dat()" class="theme-btn btn-style-one">&nbsp;Download Brochure</button>
+              </div>
               <?php endif;?>
               </div>
             </div>

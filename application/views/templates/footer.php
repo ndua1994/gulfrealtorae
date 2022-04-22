@@ -46,6 +46,41 @@
 </form>
 </div>
 
+<div class="modal fade" id="over">
+    <p id="messageDownload" style="display:none;">Thank you for download, we will contact you shortly!</p>
+    <div class="modal-dialog">
+	<div class="modal-content">
+            <!--  Form start  -->
+	    <div class="panel panel-default contact bg-edit bg-blue" style="margin-bottom:0;max-width:500px;">
+		<!--<div class="panel-heading">Pdf download</div>-->
+		<div class="panel-body" style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?=base_url()?>assets/images/lime-green-background.jpg);">
+
+		    <form id="loginForm" novalidate="novalidate">			
+			<div class="row" style="max-width:500px;">
+			    <p class="text-uppercase my-font-style" align="center" style="margin-top: 10px !important; margin-bottom: 10px !important; color: #ffffff !important;">Fill Your Contact Details</p>
+			    <div class="col-md-12">
+				<input id="name1" type="text" class="form-control" placeholder="Name" name="name1" required  style="background: transparent; color: #ffffff;">
+			    </div>
+			    <div class="col-md-12">
+				<input id="email1" type="email" class="form-control" name="email1" placeholder="Email" required style="background: transparent; color: #ffffff;">
+			    </div>
+			    <div class="col-md-12" style="margin-bottom: 15px;">
+				<input id="mobile1" placeholder="Phone" name="mobile1" type="text" class="form-control input-inverse iti-phone" required style="background: transparent; color: #ffffff;">
+				</div>
+			    <div class="col-md-12 text-center">
+				<input type="hidden" name="site_name" value="<?php echo $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; ?>" />
+			      <!--<input type="submit"  name="EnqSubmit"  class="btn btn-white" value="Send us a Message">-->
+				<button onclick="insert()" type="button" class="btn btn-white" name="sub">Download Brochure</button>      
+			    </div>
+			</div>
+		    </form>
+		</div>
+	    </div>
+            <!--  Form end  -->
+	</div>
+    </div>
+</div>  
+
 
 <a href="#" class="back-to-top"><span class="ion-ios-arrow-up"></span></a>
 <?=script_tag('assets/js/jquery-1.12.4.min.js')?>
