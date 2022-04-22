@@ -246,7 +246,7 @@
             </section>
             
             <section class="widget widget--white widget--padding-20 widget__news">
-              <h3 class="widget__title">Keyheighlights</h3>
+              <h3 class="widget__title">Key Highlights</h3>
               <ul class="widget__news-list">
                 <li class="widget__news-item"><a href="#">Outer Sunset Real Estate: <span>San Francisco Neighborhood Guide</span></a></li>
                 <li class="widget__news-item"><a href="#">Pacific Heights Real Estate: <span>San Francisco CA Neighborhood</span></a></li>
