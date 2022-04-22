@@ -62,6 +62,51 @@ class Property extends MY_Controller
 
 	}
 
+	public function enquiry_form()
+	{
+		sleep(1);
+		$data=$this->input->post();
+		$record=$this->property_m->enquiry_form($data);
+		$send_mail=$this->send_mail($data);
+
+		if($record && $send_mail)
+		{
+			
+			$attr=array('status'=>'success','msg'=>'Record has been submitted successsfully !');
+		}
+		else
+		{
+            $attr=array('status'=>'error','msg'=>'Error ! Try after sometime');
+		}
+
+		echo json_encode($attr);
+
+	}
+
+
+		public function send_mail($rec)
+	{
+
+
+		
+        $data = array('name' => $rec['prop_name'], 
+        'email' => $rec['prop_email'],
+        'mobile' => $rec['prop_mobile'],
+        'comment' => $rec['prop_message']);
+        
+        
+        $from_email='donotreply@gulfrealtor.ae';
+        $this->email->set_mailtype("html");
+        $this->email->from($from_email,'Admin');
+        $this->email->to('duanishant71@gmail.com');
+        $this->email->subject('Property Enquiry : Schedule a Visit');
+        $this->email->message($this->load->view('email/sale-property',$data, true));
+		if($this->email->send())
+		{
+			return true;
+		}
+		return $this->email->print_debugger();
+	}
 
 	public function property_detail($det)
 	{
@@ -71,4 +116,6 @@ class Property extends MY_Controller
 	$data['prop_inner_images']=explode(',',$data['property_detail']->prop_inner_img);
 	$this->template('sale-property-detail',$data);
 	}
+
+	
 }

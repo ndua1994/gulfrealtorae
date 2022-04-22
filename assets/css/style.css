@@ -7474,6 +7474,11 @@ button.close {
 /*nishant css starts*/
 
 
+#property-form label.error
+{
+
+margin: 0;padding: 0;color: red;font-weight: 400;position: relative;top: -16px;}
+
 .offer-btn a
 {
    text-decoration: none !important;
@@ -7585,6 +7590,12 @@ div#respond {
 .comm_sec h2
 {
   
+}
+
+.prop_msg {
+    margin: 0 0 10px;
+    color: green;
+    font-size: 15px;
 }
 
 

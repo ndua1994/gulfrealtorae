@@ -6,6 +6,92 @@ $(document).ready(function () {
 
 
 
+$('input[name="schedule_submit"]').on('click',function(e){
+$('#property-form').validate({
+
+
+rules:
+{
+
+  name:
+  {
+    required:true
+  },
+  email_id:
+  {
+    required:true,
+    email:true
+  },
+  message:
+  {
+    required:true
+  }
+
+},
+messages:
+{
+  name:
+  {
+    required:'Name is required'
+  },
+  email_id:
+  {
+    required:'Email ID is required',
+    email:'Enter a valid Email ID'
+  },
+  message:
+  {
+    required:'Message is required'
+  }
+},
+submitHandler:function(form)
+{
+  $.ajax({
+
+    url:base_url+'property/enquiry-form',
+    data:$('#property-form').serializeArray(),
+    type:'POST',
+    dataType:'json',
+    beforeSend:function()
+    {
+      $('input[name="schedule_submit"]').val('Wait...');
+      $('input[name="schedule_submit"]').prop('disabled',true);
+    },
+    success:function(r)
+    {
+      if(r.status=='success')
+      {
+          $('.prop_msg').text(r.msg);
+          $('input[name="schedule_submit"]').val('Submit');
+          $('input[name="schedule_submit"]').prop('disabled',false); 
+          $("#property-frm")[0].reset();
+      }
+      else
+      {
+        $('.prop_msg').text(r.msg);
+        $('input[name="schedule_submit"]').val('Submit');
+        $('input[name="schedule_submit"]').prop('disabled',false); 
+        $("#property-frm")[0].reset();
+
+      }
+
+
+
+
+
+    }
+
+
+
+  });
+}
+
+
+
+});
+});
+
+
 $('input[name="popup_submit"]').on('click',function(e){
 
 $('#login').validate({

@@ -142,6 +142,33 @@ class Property_m extends CI_Model
 
   	return false;
   }
+
+
+  public function enquiry_form($data)
+  {
+  	$rec=[
+
+  		'prop_id'=>$data['prop_id'],
+  		'schedule_date'=>$data['schedule_date'],
+  		'schedule_time'=>$data['schedule_time'],
+  		'prop_name'=>$data['name'],
+  		'prop_email'=>$data['email_id'],
+  		'prop_message'=>$data['message'],
+  		'is_active'=>1
+  	];
+
+
+  	$query=$this->db->insert('tbl_prop_frm',$rec);
+  	if($query)
+  	{
+  		  return true;
+  	}
+
+  	return false;
+
+
+
+  }
 	
 
 

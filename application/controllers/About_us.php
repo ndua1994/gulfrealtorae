@@ -40,8 +40,6 @@ class About_us extends MY_Controller
 	public function send_mail($rec)
 	{
 
-
-		
         $data = array('name' => $rec['name'], 
         'email' => $rec['email'],
         'mobile' => $rec['mobile_hidden'].$rec['mobile'],

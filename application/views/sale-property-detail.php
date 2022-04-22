@@ -167,31 +167,34 @@
 
             <div class="property__feature">
               <h3 class="property__feature-title property__feature-title--b-spacing">Schedule A Visit</h3>
-              <form class="property__form">
+              <div class="prop_msg"></div>
+              <form class="property__form" action="" method="post" id="property-form">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="property__form-wrapper">
-                      <input type="text" name="date" class="property__form-field property__form-date" placeholder="Monday" data-format="l, F d, Y"  data-min-year="2017"  data-max-year="2020" data-translate-mode="true" data-modal="true" data-large-mode="true" required>
+                      <input type="text" name="schedule_date" class="property__form-field property__form-date" placeholder="Monday" data-format="l, F d, Y"  data-min-year="2017"  data-max-year="2020" data-translate-mode="true" data-modal="true" data-large-mode="true">
                       <span class="ion-android-calendar property__form-icon"></span>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="property__form-wrapper">
-                      <input type="text" name="time" class="property__form-field property__form-time" placeholder="07:30 AM" required>
+                      <input type="text" name="schedule_time" class="property__form-field property__form-time" placeholder="07:30 AM">
                       <span class="ion-android-alarm-clock property__form-icon"></span>
                     </div>
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" name="name" class="property__form-field" placeholder="Your Name" required>
+                    <input type="text" name="name" class="property__form-field" placeholder="Your Name" autocomplete="off">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" name="contact" class="property__form-field" placeholder="Your Email/Phone" required>
+                    <input type="text" name="email_id" class="property__form-field" placeholder="Your Email ID" autocomplete="off">
                   </div>
                   <div class="col-sm-12">
-                    <textarea rows="4" name="message" class="property__form-field" placeholder="Message" required></textarea>
+                    <textarea rows="4" name="message" class="property__form-field" placeholder="Message"></textarea>
                   </div>
                   <div class="col-sm-12">
-                    <input name="submit" type="submit" class="property__form-submit" value="Submit"></input>
+                    <input type="hidden" name="prop_id" value="<?=$property_detail->prop_id?>">
+                    <input type="hidden" name="property_type" value="Sale">
+                    <input name="schedule_submit" type="submit" class="property__form-submit" value="Submit"></input>
                   </div>
                 </div>
               </form>
