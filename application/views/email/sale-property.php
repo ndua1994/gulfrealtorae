@@ -153,7 +153,7 @@ a[x-apple-data-detectors='true'] {
   <div>
     	<table width="100%" border="1">
 		<tr>
-			   <td colspan="2" align="center"><h1>Property Enquiry : Schedule a Visit</h1></td>
+			   <td colspan="2" align="center"><h1>Sale Property Enquiry : Schedule a Visit</h1></td>
 		</tr>
 		<tr>
 			   <td>Name</td>

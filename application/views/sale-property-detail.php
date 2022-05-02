@@ -1,5 +1,4 @@
 
-
 <section class="property">
   <div class="container">
     <ul class="ht-breadcrumbs ht-breadcrumbs--y-padding ht-breadcrumbs--b-border">
@@ -90,72 +89,55 @@
              <?=$property_detail->prop_feature?>
             </div>
 
-            <div class="property__feature">
-              <h3 class="property__feature-title property__feature-title--b-spacing">Floor Plans (2)</h3>
+            <?php if(count($floor_plan_detail)>0):?>
+
+     <div class="property__feature">
+              <h3 class="property__feature-title property__feature-title--b-spacing">Floor Plans (<?=count($floor_plan_detail)?>)</h3>
+              <?php
+              foreach($floor_plan_detail as $key=>$floor_plan):
+              ?>
               <div class="property__accordion">
                 <div class="property__accordion-header">
                   <div class="property__accordion-textcontent">
-                    <span class="property__accordion-title">First Floor</span>
+                    <span class="property__accordion-title"><?=$floor_plan->floor_name?></span>
                     <ul class="property__accordion-stats">
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Size:</span> 2650</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Rooms:</span> 1670 Sqft</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Baths:</span> 980 Sqft</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Prices:</span> $568</li>
+                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Size:</span> <?=$floor_plan->floor_size?></li>
+                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Rooms:</span> <?=$floor_plan->floor_size?></li>
+                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Baths:</span> <?=$floor_plan->floor_bath?></li>
+                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Prices:</span> <?=$floor_plan->floor_price?></li>
                     </ul>
                   </div>
                   <i class="fa fa-caret-up property__accordion-expand" aria-hidden="true"></i> 
                 </div>
 
-               <div id="carouselExampleControls4" class="carousel slide" data-ride="carousel">
+               <div id="carouselExampleControls<?=$key?>" class="carousel slide" data-ride="carousel" style=<?=($key>0 ? 'display:none' : '')?>>
                    <div class="carousel-inner">
+                    <?php
+                    $floor_images=explode(',',$floor_plan->floor_imgs);
+                    foreach($floor_images as $fp_images):
+                    ?>
                      <div class="carousel-item active">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-1-7774.98-SqFt.jpg" alt="Emaar IL Primo Apartments">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-1-11229-SqFt.jpg" alt="Emaar IL Primo Apartments">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-2-6636.05-SqFt.jpg" alt="third slide">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-2-10248.96-SqFt.jpg" alt="Emaar IL Primo Apartments">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-3-6636.05-SqFt.jpg" alt="Emaar IL Primo Apartments">
-                     </div>
-                     <div class="carousel-item">
-                       <img class="d-block w-100" src="images/il-primo/floor-plan/6-Bedroom-Unit-3-9335.4-SqFt.jpg" alt="Emaar IL Primo Apartments">
-                     </div>
+                       <img class="d-block w-100" src="<?=base_url('admin_HCSrRaVt58Ezffv/uploads/').$fp_images?>">
+                     </div>             
+                     <?php endforeach;?>
                    </div>
-                   <a class="carousel-control-prev" href="#carouselExampleControls4" role="button" data-slide="prev">
+                   <a class="carousel-control-prev" href="#carouselExampleControls<?=$key?>" role="button" data-slide="prev">
                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                      <span class="sr-only">Previous</span>
                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls4" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselExampleControls<?=$key?>" role="button" data-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
                   </div>
               </div>
-              <div class="property__accordion">
-                <div class="property__accordion-header">
-                  <div class="property__accordion-textcontent">
-                    <span class="property__accordion-title">Second Floor</span>
-                    <ul class="property__accordion-stats">
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Size:</span> 2650</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Rooms:</span> 1670 Sqft</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Baths:</span> 980 Sqft</li>
-                      <li class="property__accordion-figure"><span class="property__accordion-figure--cat">Prices:</span> $568</li>
-                    </ul>
-                  </div>
-                  <i class="fa fa-caret-down property__accordion-expand" aria-hidden="true"></i>
-                </div>
-
-                <div class="property__accordion-content">
-                  <img src="images/uploads/floor_plan.png" alt="Floor Plan">
-                </div>
-              </div>
+            <?php endforeach;?>
+           
             </div>
+
+          <?php endif;?>
+
+
           
          <div class="property__feature">
               <h3 class="property__feature-title property__feature-title--b-spacing">Location</h3>
@@ -244,16 +226,22 @@
 
             
             </section>
-            
+            <?php
+            $key_high_arr=explode(',',$property_detail->prop_key_highlights);
+            if(count($key_high_arr)>1){
+            ?>
             <section class="widget widget--white widget--padding-20 widget__news">
               <h3 class="widget__title">Key Highlights</h3>
               <ul class="widget__news-list">
-                <li class="widget__news-item"><a href="#">Outer Sunset Real Estate: <span>San Francisco Neighborhood Guide</span></a></li>
-                <li class="widget__news-item"><a href="#">Pacific Heights Real Estate: <span>San Francisco CA Neighborhood</span></a></li>
-                <li class="widget__news-item"><a href="#">Mission District San Francisco: <span>Authentic Community</span></a></li>
-                <li class="widget__news-item"><a href="#">Hayes Valley Real Estate: <span>San Francisco CA Neighborhood</span></a></li>
+              <?php 
+              foreach($key_high_arr as $key_high):
+              ?>
+              <li class="widget__news-item"><a href="#"><?=$key_high?></a></li>
+              <?php endforeach;?>
               </ul>
             </section>
+          <?php }?>
+
           </div>
         </aside>
       </div><!-- .row -->

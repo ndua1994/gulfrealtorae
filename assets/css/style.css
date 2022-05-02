@@ -7568,3 +7568,9 @@ html.modal-opened {
     border: 1px solid #1fc341;
     color: #ffffff;
 }
+
+
+.sale_brochure_msg {
+    text-align: center;
+    color: #fff;
+}

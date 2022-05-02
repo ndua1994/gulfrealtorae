@@ -82,6 +82,7 @@ class Property extends MY_Controller
 			}
 
 
+			
 			/*multiple property image upload starts*/
 
 			$count=count($_FILES['prop_inner_img']['name']);
@@ -113,23 +114,81 @@ class Property extends MY_Controller
 
 
         	$add_property=$this->prop_m->add_property($post);
-        	if($add_property)
-        	{
-        		$this->session->set_flashdata('msg','Property has been added successfully !');
-			return redirect('property/manage');
-        	}
 
-        	
-        }
+        	/*insert floor plan starts*/
 
-      
-        	$this->inner_template('pages/add-property',$data);
-     
-		
+				$floor_plan_name=$this->input->post('floor_plan_name');
+				$fp_data=array();
+                foreach ($floor_plan_name as $key=>$value) 
+                {
+
+
+                	$count=count($_FILES['floor_plan_img_'.($key).'']['name']);
+
+
+	for($i=0;$i<$count;$i++)
+	{
+
+	//echo $_FILES['floor_plan_img_'.($key).'']['name'][$i];
+
+	$_FILES['file']['name'] = $_FILES['floor_plan_img_'.($key).'']['name'][$i];
+	$_FILES['file']['type'] = $_FILES['floor_plan_img_'.($key).'']['type'][$i];
+	$_FILES['file']['tmp_name'] = $_FILES['floor_plan_img_'.($key).'']['tmp_name'][$i];
+	$_FILES['file']['error'] = $_FILES['floor_plan_img_'.($key).'']['error'][$i];
+	$_FILES['file']['size'] = $_FILES['floor_plan_img_'.($key).'']['size'][$i];
+
+	$config['file_name'] = $_FILES['floor_plan_img_'.($key).'']['name'][$i];
+	if($this->upload->do_upload('file')){
+	$uploadData = $this->upload->data();
+	$filename = $uploadData['raw_name'].$uploadData['file_ext'];
+	$img_name.=$filename.',';
+
 	}
 
+	}
 
-	public function edit($id)
+			
+
+        	$floor_imgs=rtrim($img_name,',');
+        	
+        			$floor_name=$this->input->post('floor_plan_name['.$key.']');
+					$floor_size=$this->input->post('floor_plan_size['.$key.']');
+					$floor_room=$this->input->post('floor_plan_room['.$key.']');
+					$floor_bath=$this->input->post('floor_plan_bath['.$key.']');
+					$floor_price=$this->input->post('floor_plan_price['.$key.']');	
+
+
+					$row_arr=array(
+					'prop_id'=>$add_property,
+					'floor_name' => $floor_name,
+					'floor_imgs' => $floor_imgs,
+					'floor_size' =>  $floor_size,
+					'floor_room' =>  $floor_room,
+					'floor_bath' =>  $floor_bath,
+					'floor_price' =>  $floor_price 
+					);
+					array_push($fp_data,$row_arr);
+					$img_name='';
+				}
+
+				$add_floor_plan=$this->prop_m->add_floor_plan($fp_data);			
+        		/*insert floor plan ends*/
+
+        	
+if($add_property)
+{
+$this->session->set_flashdata('msg','Property has been added successfully !');
+return redirect('property/manage');
+}
+
+}
+
+$this->inner_template('pages/add-property',$data);
+
+}
+
+
+	public function edit($id=null)
 	{
 		$data['tags']=$this->meta_m->meta_tags('edit-property');
 		$data['view_comm']=$this->prop_m->view_comm();
@@ -184,7 +243,7 @@ class Property extends MY_Controller
 
 	}
 
-	public function update($id)
+	public function update($id=null)
 	{
 
 		$data['tags']=$this->meta_m->meta_tags('edit-property');
@@ -196,14 +255,14 @@ class Property extends MY_Controller
 		$config=[
 
 			'upload_path'=>'./uploads/',
-			'allowed_types'=>'gif|jpg|jpeg|png',
+			'allowed_types'=>'gif|jpg|jpeg|png|pdf',
 			'encrypt_name'=>TRUE,
 			'remove_spaces'=>TRUE
 		];
 
 		$this->load->library('upload',$config);
 		$post=$this->input->post();
-
+	
 		if($this->form_validation->run('updateproperty'))
 		{
 
@@ -329,7 +388,6 @@ class Property extends MY_Controller
 			$data['prop_details']=$this->prop_m->prop_details($id);
 			$this->inner_template('pages/edit-property',$data);
 			$upload_status=0;
-
 			}
 			}
 			else
@@ -349,10 +407,6 @@ class Property extends MY_Controller
 			}
 
 
-
-
-
-
 		}
 
 		$this->inner_template('pages/edit-property',$data);
@@ -360,9 +414,113 @@ class Property extends MY_Controller
 	}
 
 
+	public function floor_plan($id=null)
+	{
+		$data['tags']=$this->meta_m->meta_tags('manage-floorplan');
+		$data['floor_plan']=$this->prop_m->floor_plan($id);
+		$data['prop_id']=$id;
+		
+
+		$this->inner_template('pages/manage-floorplan',$data);
+
+	}
+
+	public function add_floor_plan($id)
+	{
+		$config=[
+
+			'upload_path'=>'./uploads/',
+			'allowed_types'=>'jpg|png|jpeg|gif',
+			'remove_spaces'=>TRUE,
+			'encrypt_name'=>TRUE
+
+		];
+
+		$this->load->library('upload',$config);
 
 
-	public function delete($del_id)
+		if($this->form_validation->run('addfloorplan') && count($_FILES['floor_imgs']['name'])>=1)
+		{
+
+			$post=$this->input->post();
+			$prop_id=$this->input->post('prop_id');
+			/*multiple property image upload starts*/
+
+			$count=count($_FILES['floor_imgs']['name']);
+        	
+        	$img_name='';
+
+			for($i=0;$i<$count;$i++)
+			{
+			$_FILES['file']['name'] = $_FILES['floor_imgs']['name'][$i];
+			$_FILES['file']['type'] = $_FILES['floor_imgs']['type'][$i];
+			$_FILES['file']['tmp_name'] = $_FILES['floor_imgs']['tmp_name'][$i];
+			$_FILES['file']['error'] = $_FILES['floor_imgs']['error'][$i];
+			$_FILES['file']['size'] = $_FILES['floor_imgs']['size'][$i];
+
+			$config['file_name'] = $_FILES['floor_imgs']['name'][$i];
+			if($this->upload->do_upload('file')){
+			$uploadData = $this->upload->data();
+			$filename = $uploadData['raw_name'].$uploadData['file_ext'];
+
+			$img_name.=$filename.',';
+
+			}
+
+			}
+
+        	$post['floor_imgs']=rtrim($img_name, ',');
+
+			/*multiple property image upload ends*/
+
+			$add_floor_plans=$this->prop_m->add_floor_plans($post);
+
+			if($add_floor_plans)
+			{
+				$this->session->set_flashdata('msgs','Floor Plan has been added successfully !');
+				return redirect('property/floor-plan/'.$prop_id.'');
+			}
+
+
+
+		}
+		else
+		{
+			$data['upload_error']=$this->upload->display_errors();
+		}
+
+		$data['tags']=$this->meta_m->meta_tags('add-floor-plan');
+		$data['prop_id']=$id;
+		$this->inner_template('pages/add-floor-plan',$data);
+
+	}
+
+	public function floor_plan_delete($id=null)
+	{
+		$select_floor_plan=$this->prop_m->select_floor_plan($id);
+		/*unlink image starts*/
+		$fp_images=explode(',',$select_floor_plan->floor_imgs);
+		foreach($fp_images as $img):
+		unlink('./uploads/'.$img.'');
+		endforeach;
+		/*unlink image ends*/
+
+		$del_floor_plan=$this->prop_m->del_floor_plan($id);
+		if($del_floor_plan)
+		{
+			$this->session->set_flashdata('msg','Floor Plan has been deleted successfully !');
+			return redirect('property/floor-plan/'.$select_floor_plan->prop_id.'');
+		}
+
+
+	}
+
+
+
+
+
+
+	public function delete($del_id=null)
 	{
 		$select_prop=$this->prop_m->select_prop($del_id);
 
@@ -371,6 +529,7 @@ class Property extends MY_Controller
 		unlink('./uploads/'.$select_prop->prop_dev_img.'');
 		unlink('./uploads/'.$select_prop->prop_brochure.'');
 		/*unlink image ends*/
+		$del_fp=$this->prop_m->del_fp($del_id);
 		$del_prop=$this->prop_m->del_prop($del_id);
 		if($del_prop)
 		{

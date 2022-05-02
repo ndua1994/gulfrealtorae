@@ -272,3 +272,81 @@ Swal.fire({
 /*copy image url ends*/
 
 
+/*add more key highlights starts*/
+var i=0;
+var j=0;
+var maximum=0;
+$(document).delegate('.add_key_high','click',function(e){
+e.preventDefault();
+var key_high_tot=$('.key_high_tot').length;
+$('.key_high_tot').each(function() {
+  var value = parseFloat($(this).attr('max-id'));
+  if (isNaN(value)) value = 0;
+
+if(value==0)
+{
+maximum=1;
+}
+else
+{
+maximum = (value > maximum) ? value : maximum;
+}
+
+  
+});
+var max=(maximum==0 ? 1 : maximum);
+$('.key_high_'+(max)+'').after('<div class="row key_high_'+(++max)+' mt-2 key_high_tot" max-id='+max+'><div class="col-10"><input type="text" class="form-control" name="key_highlights[]" placeholder="Key Highlights"></div><div class="col-2"><a href="javascript:void(0)" class="btn btn-danger del_key_high" del-id='+(max)+'><i class="fa fa-minus"></i></a></div></div>')
+});
+
+$(document).delegate('.del_key_high','click',function(e){
+var id=$(this).attr('del-id')
+var num_count=$('input[name="key_highlights[]"]').length;
+if(num_count==2)
+{
+    i=0;
+    j=0;
+}
+$(this).closest('.key_high_'+id+'').remove();
+});
+/*add more key highlights ends*/
+
+
+
+/*add floor plan starts*/
+var i=0;
+var j=0;
+var maximum=0;
+$(document).delegate('.add_floor_plan','click',function(e){
+e.preventDefault();
+var floor_plan_tot=$('.floor_plan_tot').length;
+$('.floor_plan_tot').each(function() {
+  var value = parseFloat($(this).attr('max-id'));
+  if (isNaN(value)) value = 0;
+
+if(value==0)
+{
+maximum=1;
+}
+else
+{
+maximum = (value > maximum) ? value : maximum;
+}
+
+  
+});
+var max=(maximum==0 ? 1 : maximum);
+$('.floor_plan_'+(max)+'').after('<div class="row floor_plan_'+(++max)+' mt-2 floor_plan_tot" max-id='+max+'><div class="col-2"><input type="text" class="form-control" name="floor_plan_name[]" placeholder="Name"></div><div class="col-2"><input type="file" class="form-control" name="floor_plan_img_'+(--max)+'[]" multiple></div><div class="col-1"><input type="text" class="form-control" name="floor_plan_size[]" placeholder="Size"></div><div class="col-2"><input type="text" class="form-control" name="floor_plan_room[]" placeholder="Rooms"></div><div class="col-2"><input type="text" class="form-control" name="floor_plan_bath[]" placeholder="Baths"></div><div class="col-2"><input type="text" class="form-control" name="floor_plan_price[]" placeholder="Prices"></div><div class="col-1"><a href="javascript:void(0)" class="btn btn-danger del_floor_plan" del-id='+(++max)+'><i class="fa fa-minus"></i></a></div></div>')
+});
+
+$(document).delegate('.del_floor_plan','click',function(e){
+var id=$(this).attr('del-id')
+var num_count=$('input[name="floor_plan[]"]').length;
+if(num_count==2)
+{
+    i=0;
+    j=0;
+}
+$(this).closest('.floor_plan_'+id+'').remove();
+});
+/*add floor plan ends*/
+

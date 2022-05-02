@@ -39,6 +39,12 @@ function active_method($class_name,$method_name)
 
 }
 
+function base_url_home()
+{
+	$url=str_replace('admin_HCSrRaVt58Ezffv/','',"".base_url()."");
+	return $url;
+}
+
 
 function active_method_single($method_name)
 {

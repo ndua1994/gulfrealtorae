@@ -881,10 +881,10 @@
             <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Community Name</th>
                 <th>Property Type</th>
                 <th>Property Name</th>
-                <th>Property Price</th>
+                <th>View Property</th>
+                <th>Floor Plan</th>
                 <th>Updated By</th>
                 <th>Updated At</th>
                 <th>Status</th>
@@ -898,10 +898,10 @@
 		<td><?=++$key?></td>
 		<td>
 		<img src="<?=base_url('uploads/'.$prop->prop_img.'')?>" width='120'></td>
-		<td><?=$prop->comm_name?></td>
 		<td><?=$prop->prop_type_name?></td>
 		<td><?=$prop->prop_name?></td>
-		<td><?='AED '.number_format($prop->prop_price)?></td>
+		<td class="text-center"><a href="<?=base_url_home()?>property-detail/<?=$prop->prop_slug?>" target="_blank">View</a></td>
+		<td class="text-center"><a href="<?=base_url()?>property/floor-plan/<?=$prop->prop_id?>">Manage</a></td>
 		<td><?=$prop->first_name.' '.$prop->last_name?></td>
 		<td><?=$prop->updated_at?></td>
 		<td><span class="label label-lg font-weight-bold 
@@ -915,10 +915,10 @@
             <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Community Name</th>
                 <th>Property Type</th>
                 <th>Property Name</th>
-                <th>Property Price</th>
+                <th>View Property</th>
+                <th>Floor Plan</th>
                 <th>Updated By</th>
                 <th>Updated At</th>
                 <th>Status</th>

@@ -38,7 +38,7 @@
 <hr/>
 <input type="text" name="name" class="form-control" placeholder="Name"/>
 <input type="text" name="email" class="form-control" placeholder="Email" />
-<input type="text" id="mobile" name="mobile" placeholder="Mobile Number" class="form-control iti-phone" />
+<input type="text" id="mobile_popup" name="mobile" placeholder="Mobile Number" class="form-control iti-phone" />
 <textarea name="message" class="form-control" placeholder="Message"></textarea>
 <input type="hidden" name="popup_number_hidden">
 <input type="submit" name="popup_submit" value="Submit"/>
@@ -55,23 +55,25 @@
 		<!--<div class="panel-heading">Pdf download</div>-->
 		<div class="panel-body" style="background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?=base_url()?>assets/images/lime-green-background.jpg);">
 
-		    <form id="loginForm" novalidate="novalidate">			
+		    <form id="download-brochure-frm" novalidate="novalidate">			
 			<div class="row" style="max-width:500px;">
 			    <p class="text-uppercase my-font-style" align="center" style="margin-top: 10px !important; margin-bottom: 10px !important; color: #ffffff !important;">Fill Your Contact Details</p>
 			    <div class="col-md-12">
-				<input id="name1" type="text" class="form-control" placeholder="Name" name="name1" required  style="background: transparent; color: #ffffff;">
+				<input  type="text" class="form-control" placeholder="Name" name="name"   style="background: transparent; color: #ffffff;" autocomplete="off">
 			    </div>
 			    <div class="col-md-12">
-				<input id="email1" type="email" class="form-control" name="email1" placeholder="Email" required style="background: transparent; color: #ffffff;">
+				<input type="text" class="form-control" name="email" placeholder="Email"  style="background: transparent; color: #ffffff;" autocomplete="off">
 			    </div>
 			    <div class="col-md-12" style="margin-bottom: 15px;">
-				<input id="mobile1" placeholder="Phone" name="mobile1" type="text" class="form-control input-inverse iti-phone" required style="background: transparent; color: #ffffff;">
+				<input placeholder="Phone" name="mobile" id="mobile" type="text" class="form-control input-inverse iti-phone"  style="background: transparent; color: #ffffff;" autocomplete="off">
 				</div>
 			    <div class="col-md-12 text-center">
-				<input type="hidden" name="site_name" value="<?php echo $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; ?>" />
-			      <!--<input type="submit"  name="EnqSubmit"  class="btn btn-white" value="Send us a Message">-->
-				<button onclick="insert()" type="button" class="btn btn-white" name="sub">Download Brochure</button>      
+				<input type="hidden" name="download_brochure_number_hidden">
+				<input type="hidden" name="prop_id" value="<?=$property_detail->prop_id?>">
+				<input type="hidden" name="brochure_url" value="<?=$property_detail->prop_brochure?>">
+			      <input type="submit"  name="download_brochure_submit"  class="btn btn-white" value="Download Brochure">
 			    </div>
+			    <div class="sale_brochure_msg"></div>
 			</div>
 		    </form>
 		</div>

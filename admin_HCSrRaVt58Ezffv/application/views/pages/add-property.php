@@ -978,11 +978,78 @@ echo form_input($data);
 </div>
 
 <div class="form-group">
+<label for="exampleInputPassword1">Key Highlights
+</label>
+<div class="row key_high_1 key_high_tot">
+<div class="col-10">
+<input type="text" class="form-control" name="key_highlights[]" placeholder="Key Highlights">
+</div>
+<div class="col-2">
+<a href="javascript:void(0)" class="btn btn-primary add_key_high"><i class="fa fa-plus"></i></a>
+</div>	
+</div>
+</div>
+
+
+<div class="form-group">
+<label for="exampleInputPassword1">Floor Plan
+</label>
+<div class="row floor_plan_1 floor_plan_tot">
+<div class="col-2">
+<input type="text" class="form-control" name="floor_plan_name[]" placeholder="Name">
+</div>
+<div class="col-2">
+<input type="file" class="form-control" name="floor_plan_img_0[]" multiple>
+</div>
+<div class="col-1">
+<input type="text" class="form-control" name="floor_plan_size[]" placeholder="Size">
+</div>
+<div class="col-2">
+<input type="text" class="form-control" name="floor_plan_room[]" placeholder="Rooms">
+</div>
+<div class="col-2">
+<input type="text" class="form-control" name="floor_plan_bath[]" placeholder="Baths">
+</div>
+<div class="col-2">
+<input type="text" class="form-control" name="floor_plan_price[]" placeholder="Prices">
+</div>
+<div class="col-1">
+<a href="javascript:void(0)" class="btn btn-primary add_floor_plan"><i class="fa fa-plus"></i></a>
+</div>	
+</div>
+</div>
+
+<div class="form-group">
 <label for="exampleInputPassword1">Property Slug
 </label>
 <?php
 $data=['name'=>'prop_slug','class'=>'form-control','placeholder'=>'Property Slug','value'=>set_value('prop_slug')];
 echo form_input($data);
+?>
+</div>
+
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Title
+</label>
+<?php
+$data=['name'=>'meta_title','class'=>'form-control','placeholder'=>'Meta Title','value'=>set_value('meta_title')];
+echo form_input($data);
+?>
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Keyword
+</label>
+<?php
+$data=['name'=>'meta_keyword','class'=>'form-control','placeholder'=>'Meta Keyword','value'=>set_value('meta_keyword')];
+echo form_input($data);
+?>
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Description
+</label>
+<?php
+$data=['name'=>'meta_description','class'=>'form-control','placeholder'=>'Meta Description','value'=>set_value('meta_description')];
+echo form_textarea($data);
 ?>
 </div>
 

@@ -998,6 +998,29 @@ echo form_input($data);
 </div>
 
 <div class="form-group">
+<label for="exampleInputPassword1">Key Highlights
+</label>
+<?php
+$key_high_arr=explode(',',$prop_details->prop_key_highlights);
+$i=1;
+foreach($key_high_arr as $key_high)
+{
+	$rec=($i==1 ? '1' : "$i");
+?>
+<div class="row key_high_<?=$rec?> <?=($i>1 ? 'mt-2' : '')?> key_high_tot" 
+	<?=($i>1 ? "max-id=".$rec."" : '')?> >
+<div class="col-10">
+<input type="text" class="form-control" name="key_highlights[]" placeholder="Key Highlights" value="<?=$key_high?>">
+</div>
+<div class="col-2">
+<a href="javascript:void(0)" class="btn  <?=($i>1 ? 'del_key_high btn-danger' : 'add_key_high btn-primary')?>" <?=($i>1 ? 'del-id="'.$i.'"' : '')?>> <?=($i>1 ? '<i class="fa fa-minus"></i>' : '<i class="fa fa-plus"></i>')?></a>
+</div>	
+</div>
+<?php $i++;}?>
+</div>
+
+
+<div class="form-group">
 <label for="exampleInputPassword1">Property Slug
 </label>
 <?php
@@ -1006,6 +1029,31 @@ echo form_input($data);
 ?>
 </div>
 
+
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Title
+</label>
+<?php
+$data=['name'=>'meta_title','class'=>'form-control','placeholder'=>'Meta Title','value'=>$prop_details->meta_title];
+echo form_input($data);
+?>
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Keyword
+</label>
+<?php
+$data=['name'=>'meta_keyword','class'=>'form-control','placeholder'=>'Meta Keyword','value'=>$prop_details->meta_keyword];
+echo form_input($data);
+?>
+</div>
+<div class="form-group">
+<label for="exampleInputPassword1">Meta Description
+</label>
+<?php
+$data=['name'=>'meta_description','class'=>'form-control','placeholder'=>'Meta Description','value'=>$prop_details->meta_description];
+echo form_textarea($data);
+?>
+</div>
 
 
 <div class="form-group">

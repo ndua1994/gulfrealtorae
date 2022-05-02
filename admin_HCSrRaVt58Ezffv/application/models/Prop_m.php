@@ -9,6 +9,7 @@ class Prop_m extends CI_Model
 		->join('tbl_community as tc','tp.comm_id=tc.comm_id','left')
 		->join('tbl_prop_type as tpt','tp.prop_type_id=tpt.prop_type_id','left')
 		->join('tbl_login as tl','tp.login_id=tl.login_id','left')
+		->order_by('tp.prop_id','desc')
 		->get();
 
 		if($query)
@@ -53,6 +54,7 @@ class Prop_m extends CI_Model
 
 	public function add_property($rec)
 	{
+		$key_highlight=implode(',',$rec['key_highlights']);
 
 		$data=[
 
@@ -74,8 +76,12 @@ class Prop_m extends CI_Model
 			'prop_feature'=>$rec['prop_feature'],
 			'prop_loc_descp'=>$rec['prop_loc_descp'],
 			'prop_loc_map'=>$rec['prop_loc_map'],
+			'prop_key_highlights'=>$key_highlight,
 			'is_featured'=>$rec['is_featured'],
 			'prop_slug'=>$rec['prop_slug'],
+			'meta_title'=>$rec['meta_title'],
+			'meta_keyword'=>$rec['meta_keyword'],
+			'meta_description'=>$rec['meta_description'],
 			'login_id'=>$this->session->userdata('login_id'),
 			'is_active'=>(!empty($rec['is_active']) ? '1' : '2'),
 			'updated_at'=>mdate("%Y-%m-%d %h:%i:%s"),
@@ -83,9 +89,55 @@ class Prop_m extends CI_Model
 		];
 
 		$query=$this->db->insert('tbl_property',$data);
+		$insert_id=$this->db->insert_id();
+		if($query)
+		{
+			return $insert_id;
+		}
+
+		return false;
+
+	}
+
+
+	public function add_floor_plan($rec)
+	{
+		$query=$this->db->insert_batch('tbl_prop_floorplan', $rec);
+	}
+
+	public function add_floor_plans($rec)
+	{
+		$data=[
+
+			'prop_id'=>$rec['prop_id'],
+			'floor_name'=>$rec['floor_name'],
+			'floor_imgs'=>$rec['floor_imgs'],
+			'floor_size'=>$rec['floor_size'],
+			'floor_room'=>$rec['floor_room'],
+			'floor_bath'=>$rec['floor_bath'],
+			'floor_price'=>$rec['floor_price'],
+			'is_active'=>1
+		];
+
+
+		$query=$this->db->insert('tbl_prop_floorplan',$data);
 		if($query)
 		{
 			return true;
+		}
+
+		return false;
+	}
+
+
+	public function floor_plan($id=null)
+	{
+		$query=$this->db->where('prop_id',$id)
+		                ->get('tbl_prop_floorplan');
+
+		if($query)
+		{
+			return $query->result();
 		}
 
 		return false;
@@ -102,6 +154,31 @@ class Prop_m extends CI_Model
 		{
 			return $query->row();
 		}
+	}
+
+	public function select_floor_plan($id)
+	{
+		$query=$this->db->where('prop_floorplan_id',$id)
+		                ->get('tbl_prop_floorplan');
+
+		if($query)
+		{
+			return $query->row();
+		}
+	}
+
+	public function del_floor_plan($id)
+	{
+		$query=$this->db->where('prop_floorplan_id',$id)
+		                ->delete('tbl_prop_floorplan');
+
+		if($query)
+		{
+			return true;
+		}
+
+		return false;
+
 	}
 
 
@@ -154,6 +231,10 @@ class Prop_m extends CI_Model
 
 	public function update_property($data,$id)
 	{
+
+		$key_highlight=implode(',',$data['key_highlights']);
+		
+
 		 $prop_rec=[
 
         	'comm_id'=>$data['comm_id'],
@@ -173,8 +254,12 @@ class Prop_m extends CI_Model
 			'prop_feature'=>$data['prop_feature'],
 			'prop_loc_descp'=>$data['prop_loc_descp'],
 			'prop_loc_map'=>$data['prop_loc_map'],
+			'prop_key_highlights'=>$key_highlight,
 			'is_featured'=>$data['is_featured'],
 			'prop_slug'=>$data['prop_slug'],
+			'meta_title'=>$data['meta_title'],
+			'meta_keyword'=>$data['meta_keyword'],
+			'meta_description'=>$data['meta_description'],
 			'login_id'=>$this->session->userdata('login_id'),
 			'is_active'=>(!empty($data['is_active']) ? '1' : '2'),
 			'updated_at'=>mdate("%Y-%m-%d %h:%i:%s"),
@@ -199,6 +284,18 @@ class Prop_m extends CI_Model
 		return false; 
 	}
 
+
+	public function del_fp($id)
+	{
+		$query=$this->db->where('prop_id',$id)
+		                ->delete('tbl_prop_floorplan');
+		if($query)
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 
 

@@ -106,6 +106,8 @@ class Property_m extends CI_Model
 		                ->where($cond)
 		                ->get('tbl_property');
 
+		              
+
 		if($query)
 		{
 			return $query->row();
@@ -144,6 +146,22 @@ class Property_m extends CI_Model
   }
 
 
+  public function floor_plan_detail($det)
+	{
+		$query=$this->db->where('prop_id',$det)
+		                ->get('tbl_prop_floorplan');
+
+		if($query)
+		{
+			return $query->result();
+		}
+
+		return false;
+
+	}
+
+
+
   public function enquiry_form($data)
   {
   	$rec=[
@@ -159,6 +177,30 @@ class Property_m extends CI_Model
 
 
   	$query=$this->db->insert('tbl_prop_frm',$rec);
+  	if($query)
+  	{
+  		  return true;
+  	}
+
+  	return false;
+
+
+
+  }
+
+  public function sale_property_download_brochure_form($data)
+  {
+  	$rec=[
+
+  		'prop_id'=>$data['prop_id'],
+  		'name'=>$data['name'],
+  		'email'=>$data['email'],
+  		'mobile'=>$data['mobile'],
+  		'is_active'=>1
+  	];
+
+
+  	$query=$this->db->insert('tbl_sale_prop_brochure_frm',$rec);
   	if($query)
   	{
   		  return true;

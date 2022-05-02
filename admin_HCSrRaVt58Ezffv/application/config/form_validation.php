@@ -372,6 +372,46 @@ array(
 'rules'=>'required'
 )
 
+),
+'addfloorplan'=>array(
+
+array(
+
+'field'=>'floor_name',
+'label'=>'Floor Name',
+'rules'=>'required'
+
+),
+array(
+
+'field'=>'floor_size',
+'label'=>'Floor Size',
+'rules'=>'required'
+
+),
+array(
+
+'field'=>'floor_room',
+'label'=>'Floor Room',
+'rules'=>'required'
+
+),
+array(
+
+'field'=>'floor_bath',
+'label'=>'Floor Bath',
+'rules'=>'required'
+
+),
+array(
+
+'field'=>'floor_price',
+'label'=>'Floor Price',
+'rules'=>'required|numeric'
+
+)
+
+
 )
 
 

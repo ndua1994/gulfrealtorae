@@ -99,8 +99,52 @@ class Property extends MY_Controller
         $this->email->set_mailtype("html");
         $this->email->from($from_email,'Admin');
         $this->email->to('duanishant71@gmail.com');
-        $this->email->subject('Property Enquiry : Schedule a Visit');
+        $this->email->subject('Sale Property Enquiry : Schedule a Visit');
         $this->email->message($this->load->view('email/sale-property',$data, true));
+		if($this->email->send())
+		{
+			return true;
+		}
+		return $this->email->print_debugger();
+	}
+
+
+	public function sale_property_download_brochure()
+	{
+		
+		sleep(1);
+		$data=$this->input->post();
+		$record=$this->property_m->sale_property_download_brochure_form($data);
+		$send_mail=$this->sale_property_download_brochure_mail($data);
+
+		if($record && $send_mail)
+		{
+			
+			$attr=array('status'=>'success','msg'=>'Record has been submitted successsfully !');
+		}
+		else
+		{
+            $attr=array('status'=>'error','msg'=>'Error ! Try after sometime');
+		}
+
+		echo json_encode($attr);
+
+	}
+
+
+	public function sale_property_download_brochure_mail($rec)
+	{
+		$data = array('name' => $rec['name'], 
+        'email' => $rec['email'],
+        'mobile' => $rec['mobile']);
+        
+        
+        $from_email='donotreply@gulfrealtor.ae';
+        $this->email->set_mailtype("html");
+        $this->email->from($from_email,'Admin');
+        $this->email->to('duanishant71@gmail.com');
+        $this->email->subject('Sale Property Enquiry : Download Brochure');
+        $this->email->message($this->load->view('email/sale-property-download-brochure',$data, true));
 		if($this->email->send())
 		{
 			return true;
@@ -113,6 +157,7 @@ class Property extends MY_Controller
 	$data['tags']=$this->property_m->property_tags($det);
 	$data['property_detail']=$this->property_m->property_detail($det);
 	$data['similar_property']=$this->property_m->similar_property($det);
+	$data['floor_plan_detail']=$this->property_m->floor_plan_detail($data['property_detail']->prop_id);
 	$data['prop_inner_images']=explode(',',$data['property_detail']->prop_inner_img);
 	$this->template('sale-property-detail',$data);
 	}

@@ -6,6 +6,9 @@ $(document).ready(function () {
 
 
 
+
+
+
 $('input[name="schedule_submit"]').on('click',function(e){
 $('#property-form').validate({
 
@@ -1836,6 +1839,142 @@ window.intlTelInput(mobile, {
 
 /*flag ends*/
 
+/* flag starts*/
+
+var mobile = document.querySelector("#mobile_popup");
+window.intlTelInput(mobile, {
+   allowDropdown: true,
+  // autoHideDialCode: false,
+     autoPlaceholder: "on",
+  // dropdownContainer: document.body,
+  // excludeCountries: ["us"],
+  // formatOnDisplay: false,
+  // geoIpLookup: function(callback) {
+  //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+  //     var countryCode = (resp && resp.country) ? resp.country : "";
+  //     callback(countryCode);
+  //   });
+  // },
+  // hiddenInput: "full_number",
+   initialCountry: "ae",
+  // localizedCountries: { 'de': 'Deutschland' },
+  // nationalMode: false,
+  // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+  // placeholderNumberType: "MOBILE",
+  // preferredCountries: ['cn', 'jp'],
+   separateDialCode: true,
+  utilsScript: "assist/js/utils.js",
+});
+
+
+
+/*flag ends*/
+
+
+/*download brochure validation starts*/
+
+
+$('#download-brochure-frm').validate({
+
+
+rules:
+{
+  name:
+  {
+    required:true
+  },
+  email:
+  {
+    required:true,
+    email:true
+  },
+  mobile:
+  {
+    required:true,
+    number:true
+  }
+},
+messages:
+{
+  name:
+  {
+    required:'Name is required'
+  },
+  email:
+  {
+    required:'Email ID is required',
+    email:'Enter a valid Email ID'
+  },
+  mobile:
+  {
+    required:'Mobile Number is required',
+    number:'Mobile Number must be a numeric value'
+  }
+},
+submitHandler:function(form)
+{
+  var mobile_number_hidden=$('#contact-frm .iti__selected-dial-code').text();
+  $('input[name="mobile_number_hidden"]').val(mobile_number_hidden);
+ var brochure_url=$('input[name="brochure_url"]').val();
+
+  $.ajax({
+
+    url:base_url+'property/sale_property_download_brochure',
+    data:$('#download-brochure-frm').serializeArray(),
+    type:'POST',
+    dataType:'json',
+    beforeSend:function()
+    {
+      $('input[name="download_brochure_submit"]').val('Wait...');
+      $('input[name="download_brochure_submit"]').prop('disabled',true);
+    },
+    success:function(r)
+    {
+      if(r.status=='success')
+      {
+          $.ajax({
+          url: ''+base_url+'admin_HCSrRaVt58Ezffv/uploads/'+brochure_url+'',
+          method: 'GET',
+          xhrFields: {
+          responseType: 'blob'
+          },
+          success: function (data) {
+          var a = document.createElement('a');
+          var url = window.URL.createObjectURL(data);
+          a.href = url;
+          a.download = brochure_url;
+          document.body.append(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+          }
+          });
+$('#over').modal('hide');
+/* $('.sale_brochure_msg').text(r.msg);*/
+$('input[name="download_brochure_submit"]').val('Send Message');
+$('input[name="download_brochure_submit"]').prop('disabled',false); 
+$("#download-brochure-frm")[0].reset();
+$('#download-brochure-frm input').intlTelInput('setCountry', 'myDefaultCountry');
+      }
+      else
+      {
+          $('.sale_brochure_msg').text(r.msg);
+          $('input[name="download_brochure_submit"]').val('Send Message');
+          $('input[name="download_brochure_submit"]').prop('disabled',false);
+          $('#download-brochure-frm input').intlTelInput('setCountry', 'myDefaultCountry' );
+          $("#download-brochure-frm")[0].reset();
+
+      }
+
+    }
+  });
+}
+
+
+})
+
+
+/*download brochure validation ends*/
 
 
 /*Contact us validation starts*/
