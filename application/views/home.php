@@ -4,7 +4,7 @@
                 <div class="pxp-hero-opacity"></div>
                 <div class="pxp-hero-caption">
                     <div class="container-fluid">
-                        <h1 class="text-white">Find your future home</h1>
+                        <h1 class="text-white">Find your future homes</h1>
 
                         <form class="pxp-hero-search mt-4" action="">
                             <div class="row">
