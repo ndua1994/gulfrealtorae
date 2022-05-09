@@ -350,3 +350,81 @@ $(this).closest('.floor_plan_'+id+'').remove();
 });
 /*add floor plan ends*/
 
+
+
+/*floor plan image delete starts*/
+
+$(document).on('click','.fp_img_del',function(e){
+
+var $t=$(this);
+var prop_floorplan_id=$t.attr('data-id');
+var prop_floorplan_img=$t.attr('data-img');
+
+Swal.fire({
+  icon: 'question',
+  title: 'Are you sure you want to delete ?',
+  showDenyButton: true,
+  confirmButtonText: 'Yes',
+  denyButtonText: `No`,
+}).then((result) => {
+  if (result.isConfirmed) {
+  
+  $.ajax({
+
+    url:base_url+'property/floorplan_img_del',
+    data:{prop_floorplan_id:prop_floorplan_id,prop_floorplan_img:prop_floorplan_img},
+    type:'POST',
+    dataType:'json',
+    beforeSend:function(e)
+    {
+
+    },
+    success:function(r)
+    {
+        if(r.status=='success')
+        {
+            updated_fp_imgs(prop_floorplan_id);
+        }
+        else
+        {
+            alert(r.msg);
+        }
+    }
+
+
+
+  });
+
+
+  } else if (result.isDenied) {
+    return false;
+  }
+});
+
+});
+
+
+
+function updated_fp_imgs(prop_floorplan_id)
+{
+    $.ajax({
+
+        url:base_url+'property/floorplan_img_view',
+        data:{prop_floorplan_id:prop_floorplan_id},
+        type:'POST',
+        dataType:'json',
+        beforeSend:function(e)
+        {
+
+        },
+        success:function(r)
+        {
+            $('.fp_mult_imgs').html(r.data);
+            $('input[name="prop_inner_img_hidden"]').val(r.img_name);
+        }
+
+    });
+
+}       
+
+/*floor plan image delete ends*/

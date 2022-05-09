@@ -156,6 +156,20 @@ class Prop_m extends CI_Model
 		}
 	}
 
+	public function select_fp($id)
+	{
+		$query=$this->db->where('prop_id',$id)
+		                ->get('tbl_prop_floorplan');
+
+        
+		if($query)
+		{
+			return $query->result();
+		}
+
+		return false;
+	}
+
 	public function select_floor_plan($id)
 	{
 		$query=$this->db->where('prop_floorplan_id',$id)
@@ -298,6 +312,41 @@ class Prop_m extends CI_Model
 	}
 
 
+	public function floor_plan_edit($id)
+	{
+		$query=$this->db->where('prop_floorplan_id',$id)
+		                ->get('tbl_prop_floorplan');
+
+		
+
+		if($query)
+		{
+			return $query->row();
+		}
+
+		return false;
+
+	}
+
+
+	public function update_fpimg($id,$rec)
+	{
+		$data=[
+
+			'floor_imgs'=>$rec
+		];
+		$query=$this->db->where('prop_floorplan_id',$id)
+		                ->update('tbl_prop_floorplan',$data);
+
+		if($query)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
 
 	public function del_prop($id)
 	{
@@ -309,5 +358,49 @@ class Prop_m extends CI_Model
 		}
 
 		return false;
+	}
+
+
+	public function update_floor_plan($rec)
+	{
+		$data=[
+
+			'prop_id'=>$rec['prop_id'],
+			'floor_name'=>$rec['floor_name'],
+			'floor_imgs'=>$rec['floor_imgs'],
+			'floor_size'=>$rec['floor_size'],
+			'floor_room'=>$rec['floor_room'],
+			'floor_bath'=>$rec['floor_bath'],
+			'floor_price'=>$rec['floor_price'],
+			'is_active'=>$rec['is_active']
+		];
+
+		$query=$this->db->where('prop_floorplan_id',$rec['prop_floorplan_id'])
+		                ->update('tbl_prop_floorplan',$data);
+
+
+
+		if($query)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
+	public function prop_floorplan_view($id)
+	{
+		$query=$this->db->where('prop_floorplan_id',$id)
+		                ->get('tbl_prop_floorplan');
+
+		if($query)
+		{
+			return $query->row();
+
+		}
+
+		return false;
+
 	}
 }

@@ -61,7 +61,7 @@
           <div class="property__feature-container">
             <div class="property__feature">
               <h3 class="property__feature-title"><?=$property_detail->prop_name?></h3>
-                  <p class="listing__price listing__price--open-houses"><?='AED '.number_format($property_detail->prop_price)?></p>
+                  <p class="listing__price listing__price--open-houses"><?=$property_detail->prop_price?></p>
               <div class="property__feature-schedule">
                 <ul class="property__feature-time-list">
                   <li class="property__feature-time-item"><?=$property_detail->prop_addr?></li>
