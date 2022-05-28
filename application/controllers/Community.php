@@ -64,6 +64,9 @@ class Community extends MY_Controller
 
 		$data['tags']=$this->community_m->comm_det($comm_slug);
 		$data['comm_det']=$this->community_m->comm_det($comm_slug);
+		$data['prop_detail']=$this->community_m->prop_detail($data['comm_det']->comm_id);
+
+		
 		
 		if(empty($data['comm_det']))
 		{

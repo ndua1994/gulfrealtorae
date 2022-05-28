@@ -41,6 +41,78 @@ class Pages extends MY_Controller
 	}
 
 
+	public function home()
+	{
+		$data['tags']=$this->meta_m->meta_tags('home');
+		$data['rec']=$this->page_m->home_det();
+		$this->inner_template('pages/home',$data);
+	}
+
+	public function home_update()
+	{
+		$config=[
+				'upload_path'=>'./uploads/',
+				'allowed_types'=>'jpg|jpeg|gif|png',
+				'encrypt_name'=>TRUE,
+				'remove_spaces'=>TRUE
+			];
+		   $this->load->library('upload',$config);
+         $post=$this->input->post();    
+         if($this->form_validation->run('updatehome'))
+         {
+
+            if(!empty($_FILES['home_img']['name']))
+            {     	
+				if($this->upload->do_upload('home_img'))
+				{
+					$home_img=$this->upload->data();
+					$home_img_path=$home_img['raw_name'].$home_img['file_ext'];
+					unlink('./uploads/'.$post['home_img_hidden']);
+					$post['home_img']=$home_img_path;
+					$upload_status=1;
+
+				}
+				else
+				{
+					$data['upload_error']=$this->upload->display_errors();
+					$data['tags']=$this->meta_m->meta_tags('home');
+					$data['rec']=$this->page_m->home_det();
+					$this->inner_template('pages/home',$data);
+					$upload_status=0;
+				}
+
+            }
+            else
+            {
+            	$post['home_img']=$this->input->post('home_img_hidden');
+            	$upload_status=1;
+            }
+
+
+
+         	
+         	if($upload_status)
+         	{
+         		$update_home=$this->page_m->update_home($post);
+         		if($update_home)
+         		{
+					$this->session->set_flashdata('msg','Record has been updated successfully !');
+					return redirect('pages/home');
+         		}
+         		
+         	}
+
+         }
+         else
+         {
+         	$this->home();
+         }
+
+       
+
+	}
+
+
 	public function about_us()
 	{
 		$data['tags']=$this->meta_m->meta_tags('page-about-us');

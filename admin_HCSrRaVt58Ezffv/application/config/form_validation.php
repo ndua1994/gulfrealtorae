@@ -239,6 +239,26 @@ array(
 
 
 ),
+'updatehome'=>array(
+
+array(
+
+'field'=>'home_img_alt',
+'label'=>'Image Alt Text',
+'rules'=>'required'
+
+),
+
+array(
+
+'field'=>'home_heading',
+'label'=>'Heading',
+'rules'=>'required'
+
+)
+
+
+),
 'addagnt'=>array(
 
 array(

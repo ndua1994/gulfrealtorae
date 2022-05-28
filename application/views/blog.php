@@ -59,7 +59,7 @@
               <li class="widget_thumbnail__item">
                 <div class="widget_thumbnail__img">
                   <a href="<?=base_url('/blog/'.$blog->blog_slug.'')?>">
-                    <img src="<?=image_url().$blog->blog_img?>" alt="<?=$blog->blog_img_alt_tag?>">
+                    <img src="<?=image_url().$blog->blog_img?>" alt="<?=$blog->blog_img_alt_tag?>" width='100'>
                   </a>
                 </div><!-- .widget_thumbnail-img -->
                 <div class="widget_thumbnail__content">

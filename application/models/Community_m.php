@@ -21,10 +21,40 @@ class Community_m extends CI_Model
 
 	}
 
+	public function view_community_order($order)
+	{
+		$data=[
+
+			'tc.comm_order'=>$order,
+			'tc.is_active'=>1
+
+		];
+
+
+		$query=$this->db->select('tc.*,count(tp.prop_id) as total_property')
+		                ->from('tbl_community as tc')
+		                ->join('tbl_property as tp','tc.comm_id=tp.comm_id','left')
+		                ->where($data)
+		                ->get();
+
+
+
+		
+		if($query)
+		{
+			return $query->row();
+		}
+
+		return false;
+
+	}
+
+	
+
 
 	public function contact_form($data)
-{
-	
+	{
+
 	$rec=[
 		'name'=>$data['name'],
 		'email'=>$data['email'],
@@ -42,7 +72,7 @@ class Community_m extends CI_Model
 
 	return false;
 
-}
+	}
 
 public function comm_search_view($limit,$offset,$rec=null)
 {
@@ -94,6 +124,27 @@ public function comm_det($slug=null)
 	return false;
 
 	
+
+}
+
+public function prop_detail($comm_id)
+{
+	$data=[
+		'comm_id'=>$comm_id,
+		'is_active'=>1
+	];
+	$query=$this->db->where($data)
+					->order_by('prop_id','desc')
+					->limit(4)
+					->get('tbl_property');
+
+
+	if($query)
+	{
+		return $query->result();
+	}
+
+	return false;
 
 }
 

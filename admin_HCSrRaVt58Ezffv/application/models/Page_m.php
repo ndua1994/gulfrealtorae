@@ -60,6 +60,23 @@ public function about_det()
 }
 
 
+public function home_det()
+{
+	$query=$this->db->select('th.*,tl.first_name,tl.last_name')
+		                ->from('tbl_home as th')
+		                ->join('tbl_login as tl','th.login_id=tl.login_id','left')
+		                ->get();
+
+
+	if($query)
+	{
+		return $query->row();
+	}
+
+	return false;
+}
+
+
 public function update_aboutus($data)
 {
 	$rec=[
@@ -73,6 +90,27 @@ public function update_aboutus($data)
 	
 	];
 	$query=$this->db->update('tbl_about_us',$rec);
+	if($query)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+public function update_home($data)
+{
+	$rec=[
+
+		'home_img'=>$data['home_img'],
+		'home_img_alt'=>$data['home_img_alt'],
+		'home_heading'=>$data['home_heading'],
+		'login_id'=>$_SESSION['login_id'],
+		'is_active'=>(!empty($data['is_active']) ? '1' : '2'),
+		'updated_at'=>mdate("%Y-%m-%d %h:%i:%s")
+	
+	];
+	$query=$this->db->update('tbl_home',$rec);
 	if($query)
 	{
 		return true;

@@ -7574,3 +7574,5 @@ html.modal-opened {
     text-align: center;
     color: #fff;
 }
+
+form#agent-frm .error {color: #fff;}

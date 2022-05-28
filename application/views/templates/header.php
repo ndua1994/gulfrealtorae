@@ -47,8 +47,8 @@
             <a href="<?=base_url('property')?>" class="header__nav-link">Property</a>
             <ul>
                 <li><a href="<?=base_url('property/sale')?>">Sale Property</a></li>
-                <li><a href="rent-properties.php">Rent Property</a></li>
-                 <li><a href="off-plan-properties.php">Off-Plan Property</a></li>
+                <li><a href="<?=base_url('property/rent-property')?>">Rent Property</a></li>
+                 <li><a href="<?=base_url('property/off-plan')?>">Off-Plan Property</a></li>
               </ul>
           </li>
           <li class="header__nav-item">

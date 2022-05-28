@@ -3,6 +3,7 @@
 
 class Page_m extends CI_Model
 {
+
 	public function header_details()
 	{
 		$query=$this->db->where('is_active','1')

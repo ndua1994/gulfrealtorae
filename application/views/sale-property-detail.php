@@ -3,7 +3,14 @@
   <div class="container">
     <ul class="ht-breadcrumbs ht-breadcrumbs--y-padding ht-breadcrumbs--b-border">
       <li class="ht-breadcrumbs__item"><a href="<?=base_url()?>" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Home</span></a></li>
+      <?php if($property_detail->prop_type_id==1)
+      {
+      ?>
       <li class="ht-breadcrumbs__item"><a href="<?=base_url('property/sale')?>" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Sale Property</span></a></li>
+    <?php }else if($property_detail->prop_type_id==2){?>
+ <li class="ht-breadcrumbs__item"><a href="<?=base_url('property/rent-property')?>" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Rent Property</span></a></li>
+    <?php }?>
+
       <li class="ht-breadcrumbs__item"><span class="ht-breadcrumbs__page"><?=$property_detail->prop_name?></span></li>
     </ul>
   </div>

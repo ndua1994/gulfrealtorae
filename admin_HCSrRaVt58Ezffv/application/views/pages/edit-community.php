@@ -908,6 +908,15 @@ echo form_input($data);
 </div>
 
 <div class="form-group">
+<label for="exampleInputPassword1">Order
+</label>
+<?php
+$data=['name'=>'comm_order','type'=>'number','class'=>'form-control','placeholder'=>'Order','value'=>$view_comm->comm_order];
+echo form_input($data);
+?>
+</div>
+
+<div class="form-group">
 <label for="exampleInputPassword1">Meta Title
 </label>
 <?php

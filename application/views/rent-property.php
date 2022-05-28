@@ -2,10 +2,10 @@
   <div class="section__header">
     <div class="section__header-overlay">
       <div class="container">
-        <h1 class="section__title section__title--centered">Property For Sale</h1>
+        <h1 class="section__title section__title--centered">Property For Rent</h1>
         <ul class="ht-breadcrumbs ht-breadcrumbs--centered">
           <li class="ht-breadcrumbs__item"><a href="<?=base_url()?>" class="ht-breadcrumbs__link"><span class="ht-breadcrumbs__title">Home</span></a></li>
-          <li class="ht-breadcrumbs__item"><span class="ht-breadcrumbs__page">Sale Property</span></li>
+          <li class="ht-breadcrumbs__item"><span class="ht-breadcrumbs__page">Rent Property</span></li>
         </ul>
       </div>
     </div>
@@ -25,7 +25,7 @@
         
               <p class="listing-sort__sort">
                 <label for="sort-type" class="listing-sort__label"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Sort by </label>
-                <select name="sale_prop_sort"  class="ht-field listing-sort__field">
+                <select name="rent_prop_sort"  class="ht-field listing-sort__field">
                   <option value="">Default</option>
                   <option value="desc" <?=($this->session->userdata('sort_rec')=='desc' ? 'selected' : '')?>>Price (Low to High)</option>
                   <option value="asc" <?=($this->session->userdata('sort_rec')=='asc' ? 'selected' : '')?>>Price (High to Low)</option>
@@ -42,15 +42,16 @@
     <div class="row">
 
       <?php
-      if(count($sale_property)>0){
-      foreach($sale_property as $prop):?>
+
+        if(count($rent_property)>0){
+            foreach($search_prop as $prop):?>
       <div class="col-md-4 item-grid__container">
 
         <div class="listing">
           <div class="item-grid__image-container">
             <a href="<?=base_url('property-detail/'.$prop->prop_slug.'')?>">
               <div class="item-grid__image-overlay"></div>
-              <img src="<?=image_url().$prop->prop_img?>" href="<?=base_url('property/sale/'.$prop->prop_slug.'')?>" alt="<?=$prop->prop_img_alt?>" class="listing__img">
+              <img src="<?=image_url().$prop->prop_img?>" href="<?=base_url('property/rent-property/'.$prop->prop_slug.'')?>" alt="<?=$prop->prop_img_alt?>" class="listing__img">
             </a>
           </div>
           <div class="item-grid__content-container">
@@ -86,6 +87,8 @@
   }else{?>
 <h2>No record found</h2>
 <?php }?>
+
+
 
 
   

@@ -2514,6 +2514,43 @@ submitHandler:function(form)
 /*Agent form validation ends*/
 
 
+/*Homepage property sort starts*/
+
+$(document).on('change','select[name="sort_home"]',function(e){
+
+  e.preventDefault();
+
+  var $t=$(this);
+  var sort=$t.val();
+
+  
+
+  $.ajax({
+   
+   url:base_url+'property/home_filter',
+   data:{sort:sort},
+   type:'POST',
+   dataType:'json',
+   beforeSend:function()
+   {
+       $('.item-grid').html('');
+   },
+   success:function(r)
+   {
+     $('.item-grid').hide().html(r.msg).fadeIn('slow');
+
+   }
+
+
+  });
+
+
+});
+
+
+/*Homepage property sort ends*/
+
+
 /*sale property sort starts*/
 
 
@@ -2550,4 +2587,80 @@ $(document).on('change','select[name="sale_prop_sort"]',function(e){
 });
 
 /*sale property sort ends*/
+
+
+/*rent property sort starts*/
+
+
+
+$(document).on('change','select[name="rent_prop_sort"]',function(e){
+
+  e.preventDefault();
+
+  var $t=$(this);
+  var sort=$t.val();
+
+  
+
+  $.ajax({
+   
+   url:base_url+'property/rent_filter',
+   data:{sort:sort},
+   type:'POST',
+   dataType:'json',
+   beforeSend:function()
+   {
+       $('.item-grid').html('');
+   },
+   success:function(r)
+   {
+     $('.item-grid').hide().html(r.msg).fadeIn('slow');
+
+   }
+
+
+  });
+
+
+});
+
+/*rent property sort ends*/
+
+
+/*offplan property sort starts*/
+
+
+
+$(document).on('change','select[name="offplan_prop_sort"]',function(e){
+
+  e.preventDefault();
+
+  var $t=$(this);
+  var sort=$t.val();
+
+  
+
+  $.ajax({
+   
+   url:base_url+'property/offplan_filter',
+   data:{sort:sort},
+   type:'POST',
+   dataType:'json',
+   beforeSend:function()
+   {
+       $('.item-grid').html('');
+   },
+   success:function(r)
+   {
+     $('.item-grid').hide().html(r.msg).fadeIn('slow');
+
+   }
+
+
+  });
+
+
+});
+
+/*offplan property sort ends*/
 

@@ -778,28 +778,22 @@
 <div class="d-flex flex-column-fluid">
 <!--begin::Container-->
 <div class="container">
-
+<?php if(!empty($this->session->flashdata('msg'))){?>
+<div class="alert alert-custom alert-notice alert-light-success fade show mb-5" role="alert">
+<div class="alert-text"><?=$this->session->flashdata('msg');?></div>
+<div class="alert-close">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+</button>
+</div>
+</div>
+<?php }?>
 <!--begin::Card-->
 <div class="card card-custom gutter-b">
 <div class="card-header flex-wrap py-3">
 <div class="card-title">
-<h3 class="card-label">Add Community</h3>
+<h3 class="card-label">Home</h3>
 </div>
 <div class="card-toolbar">
-<!--begin::Button-->
-<a href="<?=base_url('community/manage')?>" class="btn btn-primary font-weight-bolder">
-<span class="svg-icon svg-icon-md">
-<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-<rect x="0" y="0" width="24" height="24"></rect>
-<circle fill="#000000" cx="9" cy="15" r="6"></circle>
-<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3"></path>
-</g>
-</svg>
-<!--end::Svg Icon-->
-</span>Go Back</a>
-<!--end::Button-->
 </div>
 </div>
 <div class="card-body">
@@ -826,142 +820,64 @@
 <?php }?>
 
 <!--begin::Form-->
-<?=form_open_multipart('community/add')?>
+<?=form_open_multipart('pages/home_update')?>
 <div class="card-body">
-
 <div class="form-group">
-<label>Image
+<label>Image 
 <span class="text-danger">*</span></label>
-<?php echo form_upload(['name'=>'comm_img','class'=>'form-control']);?>
+<input type="file" name="home_img" class="form-control">
 </div>
+<?php if(!empty($rec->home_img)){?>
+<div class="mt-2">
+<img src="<?=base_url('uploads/'.$rec->home_img.'')?>" width='80'>	
+</div>
+<?php }?>
 <div class="form-group">
-<label for="exampleInputPassword1">Image Alt Tag
-</label>
+<label>Image Alt Text
+<span class="text-danger">*</span></label>
 <?php
-$data=['name'=>'comm_img_alt','class'=>'form-control','placeholder'=>'Image Alt Tag','value'=>set_value('comm_img_alt')];
-echo form_input($data);
-?>
+$data=['name'=>'home_img_alt','class'=>'form-control','placeholder'=>'Image Alt Text','value'=>$rec->home_img_alt];
+echo form_input($data)?>
 </div>
-
-
-<div class="form-group">
-<label>Inner Image</label>
-<?php echo form_upload(['name'=>'comm_inner_img','class'=>'form-control']);?>
-</div>
-<div class="form-group">
-<label for="exampleInputPassword1">Inner Image Alt Tag
-</label>
-<?php
-$data=['name'=>'comm_inner_img_alt','class'=>'form-control','placeholder'=>'Inner Image Alt Tag','value'=>set_value('comm_inner_img_alt')];
-echo form_input($data);
-?>
-</div>
-
 
 <div class="form-group">
 <label for="exampleInputPassword1">Heading
 <span class="text-danger">*</span></label>
 <?php
-$data=['name'=>'comm_heading','class'=>'form-control','placeholder'=>'Heading','value'=>set_value('comm_heading')];
-echo form_input($data);
-?>
+$data=['name'=>'home_heading','class'=>'form-control','placeholder'=>'Heading','value'=>$rec->home_heading];
+echo form_input($data)?>
 </div>
 
 <div class="form-group">
-<label for="exampleInputPassword1">Location</label>
+<label for="exampleInputPassword1">Update By</label>
 <?php
-$data=['name'=>'comm_loc','class'=>'form-control','placeholder'=>'Location','value'=>set_value('comm_loc')];
-echo form_input($data);
-?>
+$data=['disabled'=>'disabled','class'=>'form-control','placeholder'=>'Updated By','value'=>$rec->first_name.' '.$rec->last_name];
+echo form_input($data)?>
 </div>
 
 <div class="form-group">
-<label for="exampleInputPassword1">Short Description
-</label>
+<label for="exampleInputPassword1">Update At</label>
 <?php
-$data=['name'=>'comm_short_descp','class'=>'form-control','placeholder'=>'Short Description','value'=>set_value('comm_short_descp')];
-echo form_textarea($data);
-?>
+$data=['disabled'=>'disabled','class'=>'form-control','placeholder'=>'Updated At','value'=>$rec->updated_at];
+echo form_input($data)?>
 </div>
-
-<div class="form-group">
-<label for="exampleInputPassword1">Long Description
-</label>
-<textarea name="comm_long_descp" class="form-control" id="kt-tinymce-4" 
-placeholder="Long Description"><?=set_value('comm_long_descp')?></textarea>
-</div>
-
-
-<div class="form-group">
-<label for="exampleInputPassword1">Map
-</label>
-<?php
-$data=['name'=>'comm_map','type'=>'number','class'=>'form-control','placeholder'=>'Map','value'=>set_value('comm_map')];
-echo form_input($data);
-?>
-</div>
-
-<div class="form-group">
-<label for="exampleInputPassword1">Order
-</label>
-<?php
-$data=['name'=>'comm_order','class'=>'form-control','placeholder'=>'Order','value'=>set_value('comm_order')];
-echo form_input($data);
-?>
-</div>
-
-
-<div class="form-group">
-<label for="exampleInputPassword1">Meta Title
-</label>
-<?php
-$data=['name'=>'meta_title','class'=>'form-control','placeholder'=>'Meta Title','value'=>set_value('meta_title')];
-echo form_input($data);
-?>
-</div>
-
-<div class="form-group">
-<label for="exampleInputPassword1">Meta Keyword
-</label>
-<?php
-$data=['name'=>'meta_keyword','class'=>'form-control','placeholder'=>'Meta Keyword','value'=>set_value('meta_keyword')];
-echo form_input($data);
-?>
-</div>
-<div class="form-group">
-<label for="exampleInputPassword1">Meta Description
-</label>
-<?php
-$data=['name'=>'meta_description','class'=>'form-control','placeholder'=>'Meta Description','value'=>set_value('meta_description')];
-echo form_textarea($data);
-?>
-</div>
-
-
-<div class="form-group">
-<label for="exampleInputPassword1">Slug
-</label>
-<?php
-$data=['name'=>'comm_slug','class'=>'form-control','placeholder'=>'Slug','value'=>set_value('comm_slug')];
-echo form_input($data);
-?>
-</div>
-
-
-
 
 <div class="form-group">
 <label for="exampleInputPassword1">Status</label>
 <span class="switch switch-md switch-icon">
 <label>
-<input type="checkbox" name="is_active" value="1" <?=(set_value('is_active')==1 ? 'checked' : '')?>>
+<input type="checkbox" name="is_active" value="1" <?=($rec->is_active==1 ? 'checked' : '')?>>
 <span></span>
 </label>
 </span>
 </div>
+
+
+
 </div>
 <div class="card-footer">
-<button type="submit" name="add_community" class="btn btn-primary mr-2">Add</button>
+<?=form_hidden('home_img_hidden',$rec->home_img)?>
+<button type="submit" name="update_home" class="btn btn-primary mr-2">Update</button>
 <button type="reset" class="btn btn-secondary">Reset</button>
 </div>
 <?=form_close()?>

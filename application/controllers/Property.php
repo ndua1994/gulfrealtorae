@@ -27,6 +27,31 @@ class Property extends MY_Controller
 		$this->template('sale-property',$data);
 	}
 
+	public function home_filter()
+	{
+		$sort=$this->input->post('sort');
+		$this->session->set_userdata('sort_home',$sort);
+
+       $data['home_property']=$this->property_m->home_property_filter($sort);
+	   $data['total_rec']=$this->property_m->home_num_rows($sort);
+
+
+		 if($data['total_rec']>0)
+		 {
+			$search_ouput=$this->load->view('ajax/home-property-filter',$data,TRUE);
+            $attr=array('status'=>'success','msg'=>$search_ouput);
+		 }
+		 else
+		 {
+		 	$attr=array('status'=>'error','msg'=>'<h2>No record found</h2>');
+		 }
+
+		 echo json_encode($attr);
+
+
+
+	}
+
 	public function sale_filter()
 	{
 		$sort=$this->input->post('sort');
@@ -49,6 +74,78 @@ class Property extends MY_Controller
 		 if($data['total_rec']>0)
 		 {
 			$search_ouput=$this->load->view('ajax/sale-property-filter',$data,TRUE);
+            $attr=array('status'=>'success','msg'=>$search_ouput);
+		 }
+		 else
+		 {
+		 	$attr=array('status'=>'error','msg'=>'<h2>No record found</h2>');
+		 }
+
+		 echo json_encode($attr);
+
+
+
+	}
+
+
+	public function rent_filter()
+	{
+		$sort=$this->input->post('sort');
+		$this->session->set_userdata('sort_rec',$sort);
+
+
+		$config=[
+        'base_url'=>base_url('property/rent-property'),
+        'first_url'=>base_url('property/rent-property'),
+        'total_rows'=>$this->property_m->rent_num_rows($sort),
+        'per_page'=>9
+		];
+
+		$this->pagination->initialize($config);
+		$data['links']=$this->pagination->create_links();
+		$data['rent_property']=$this->property_m->rent_property_filter($sort,$config['per_page'],$this->uri->segment(3));
+		$data['total_rec']=$this->property_m->rent_num_rows($sort);
+
+
+		 if($data['total_rec']>0)
+		 {
+			$search_ouput=$this->load->view('ajax/rent-property-filter',$data,TRUE);
+            $attr=array('status'=>'success','msg'=>$search_ouput);
+		 }
+		 else
+		 {
+		 	$attr=array('status'=>'error','msg'=>'<h2>No record found</h2>');
+		 }
+
+		 echo json_encode($attr);
+
+
+
+	}
+
+
+		public function offplan_filter()
+	{
+		$sort=$this->input->post('sort');
+		$this->session->set_userdata('sort_rec',$sort);
+
+
+		$config=[
+        'base_url'=>base_url('property/off-plan'),
+        'first_url'=>base_url('property/off-plan'),
+        'total_rows'=>$this->property_m->offplan_num_rows($sort),
+        'per_page'=>9
+		];
+
+		$this->pagination->initialize($config);
+		$data['links']=$this->pagination->create_links();
+		$data['offplan']=$this->property_m->offplan_property_filter($sort,$config['per_page'],$this->uri->segment(3));
+		$data['total_rec']=$this->property_m->offplan_num_rows($sort);
+
+
+		 if($data['total_rec']>0)
+		 {
+			$search_ouput=$this->load->view('ajax/offplan-property-filter',$data,TRUE);
             $attr=array('status'=>'success','msg'=>$search_ouput);
 		 }
 		 else
@@ -161,6 +258,58 @@ class Property extends MY_Controller
 	$data['prop_inner_images']=explode(',',$data['property_detail']->prop_inner_img);
 	$this->template('sale-property-detail',$data);
 	}
+
+
+	public function rent_property()
+	{
+		$sort=$this->session->userdata('sort_rec');
+
+
+		$config=[
+			'first_url'=>base_url('property/rent-property'),
+			'base_url'=>base_url('property/rent-property'),
+			'total_rows'=>$this->property_m->rent_num_rows($sort),
+			'per_page'=>9
+		];
+
+		$this->pagination->initialize($config);
+		$data['links']=$this->pagination->create_links();
+		$data['tags']=$this->meta_m->meta_tags('rent-property');
+		$data['rent_property']=$this->property_m->rent_property_filter($sort,$config['per_page'],$this->uri->segment(3));
+		$this->template('rent-property',$data);
+	}
+
+
+	public function off_plan()
+	{
+
+		$sort=$this->session->userdata('sort_rec');
+
+		$config=[
+			'first_url'=>base_url('property/off-plan'),
+			'base_url'=>base_url('property/off-plan'),
+			'total_rows'=>$this->property_m->offplan_num_rows($sort),
+			'per_page'=>9
+		];
+
+		$this->pagination->initialize($config);
+		$data['links']=$this->pagination->create_links();
+		$data['tags']=$this->meta_m->meta_tags('offplan');
+		$data['offplan']=$this->property_m->offplan_property_filter($sort,$config['per_page'],$this->uri->segment(3));
+		$this->template('offplan-property',$data);
+	}
+
+	public function search()
+	{
+		$data['search_property']=$this->input->post('search_property');
+		$search_property=$this->input->post('search_property');
+		$data['tags']=$this->meta_m->meta_tags('search');
+		$data['search_count']=$this->property_m->searh_count($search_property);
+		$data['search_prop']=$this->property_m->search_prop($search_property);	
+		$this->template('search',$data);
+		
+	}
+
 
 	
 }
