@@ -24,7 +24,7 @@ date_default_timezone_set('Asia/Kolkata');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://gulf-realtor.ae/ci/admin_HCSrRaVt58Ezffv/';
+$config['base_url'] = 'https://gulf-realtor.ae/ci/admin_HCSrRaVt58Ezffv/';
 
 /*
 |--------------------------------------------------------------------------
